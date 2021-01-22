@@ -26,7 +26,7 @@ require('../require/html_/header.php');
 ?>
 <main>
     <section>
-            <form class="block" method="POST" action="">
+            <form class="block" method="POST" action="post">
             <h2>Profil</h2>
 
                 <label name="login">Nouveau login</label>
