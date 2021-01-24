@@ -28,7 +28,36 @@ class Admin extends Model {
             return $result;
         }
 
+    public function modifyCategorie(){
 
+        $modelCategorie = new \Models\Admin();
+        $tableauCategorie = $modelCategorie->findAllCategories();
+        
+        foreach ($tableau as $key => $value) 
+        {
+            $nom = $value[0]; // 0 = nom  <---> 1 = id
+            $id = $value[1];
+         echo "<option>".$nom."</option>"; //imprimer dans un select voir si ça marche 
+        }
+    }
+    public function findAllUsers(){
+        $sql = "SELECT id, login, email, id_droits FROM utilisateurs ORDER BY id";
+        var_dump($sql);
+        $result = $this->pdo->prepare($sql);
+        $result->execute();
+        $i = 0;
+        while($fetch = $result->fetch(\PDO::FETCH_ASSOC)){
+
+            $tableau[$i][] = $fetch['id'];
+            $tableau[$i][] = $fetch['login'];
+            $tableau[$i][] = $fetch['email'];
+            $tableau[$i][] = $fetch['id_droits'];
+
+            $i++;
+
+        }
+        return $tableau;
+        }
     
 }
 

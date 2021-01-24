@@ -24,22 +24,5 @@ class Article extends Model{
         return $result;
     }
     
-    public function findAllCategories() // permet d'afficher toutes les catégories 
-    {
-        $sql = "SELECT nom ,id FROM categories ORDER BY id";  
-        $result = $this->pdo->prepare($sql);
-        $result->execute();
-
-        $i = 0;
-         
-        while($fetch = $result->fetch(\PDO::FETCH_ASSOC))
-        {
-            $tableau[$i][] = $fetch['nom'];
-            $tableau[$i][] = $fetch['id'];
-
-            $i++;
-        }
-        return $tableau;
-    }
 
 }

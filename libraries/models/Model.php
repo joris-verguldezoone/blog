@@ -30,6 +30,15 @@ abstract class Model // <3
         $fetch = $result->fetch(\PDO::FETCH_ASSOC);
         return $fetch;
     }
+    public function ifExistEmail($email) // Est ce que l'utilisateur existe ? 
+    {
+        $sql = "SELECT email FROM utilisateurs WHERE email = :email";
+        $result = $this->pdo->prepare($sql);
+        $result->bindvalue(':email', $email, \PDO::PARAM_STR);
+        $result->execute();
+        $fetch = $result->fetch(\PDO::FETCH_ASSOC);
+        return $fetch;
+    }
   
     public function passwordVerifySql($login) 
     {
@@ -50,5 +59,43 @@ abstract class Model // <3
         $fetch = $result->fetch(\PDO::FETCH_ASSOC);
 
         return $fetch;
+    }
+    public function findAllCategories() // permet d'afficher toutes les catégories 
+    {
+        $sql = "SELECT nom ,id FROM categories ORDER BY id";  
+        $result = $this->pdo->prepare($sql);
+        $result->execute();
+
+        $i = 0;
+         
+        while($fetch = $result->fetch(\PDO::FETCH_ASSOC))
+        {
+            $tableau[$i][] = $fetch['nom'];
+            $tableau[$i][] = $fetch['id'];
+
+            $i++;
+        }
+        return $tableau;
+    }
+   
+    public function findAllArticles()
+    {
+        $sql = "SELECT  id, article, id_utilisateur, id_categorie, date FROM articles ORDER BY date";  
+        $result = $this->pdo->prepare($sql);
+        $result->execute();
+
+        $i = 0;
+         
+        while($fetch = $result->fetch(\PDO::FETCH_ASSOC))
+        {
+            $tableau[$i][] = $fetch['id'];// rajouter un titre
+            $tableau[$i][] = $fetch['article'];
+            $tableau[$i][] = $fetch['id_utilisateur'];
+            $tableau[$i][] = $fetch['id_categorie'];
+            $tableau[$i][] = $fetch['date'];
+
+            $i++;
+        }
+        return $tableau;
     }
 }

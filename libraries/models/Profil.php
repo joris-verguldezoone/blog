@@ -15,9 +15,7 @@ namespace Models {
             $result->bindvalue(':email', $email, \PDO::PARAM_STR);
             $result->bindvalue(':id',$_SESSION['utilisateur']['id'], \PDO::PARAM_INT);
             $result->execute();
-            $fetch = $result->fetch(\PDO::FETCH_ASSOC);
-    
-            return $fetch;
+           
         }
         
     }

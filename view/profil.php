@@ -43,6 +43,7 @@ require('../require/html_/header.php');
 
                 <input type="submit" id="inscriptionSubmit" value="register" name="register">
             <?php
+                var_dump($_SESSION['utilisateur']);
 
     if (isset($_POST['register'])) {
         

@@ -35,23 +35,28 @@ class Profil{
 
                     $modelProfil = new \Models\Profil();
                     $fetch_utilisateur = $modelProfil->findAll($login); // je trouve mon id en dehors des session 
+
                     $new_name = $modelProfil->ifExist($login); // mon nouveau pseudo existe-t-il ? 
-                
-                    if (!$new_name) {
+                    $new_email = $modelProfil->ifExistEmail($email);
 
-                        if ($_POST['password'] == $_POST['confirm_password']) {
+                    if (!$new_name || $login == $_SESSION['utilisateur']['login']) {
+                        if (!$new_email || $email == $_SESSION['utilisateur']['email']) {
+                            if ($_POST['password'] == $_POST['confirm_password']) {
 
-                            $cryptedpassword =  password_hash($password, PASSWORD_BCRYPT);
-                            $modelProfil->secure($login); 
-                            $modelProfil->secure($cryptedpassword);
-                            
-                            
-                            $newSession = $modelProfil->update($login, $cryptedpassword, $email, $fetch_utilisateur['id']); // GG WP
-                            echo "changement(s) effectué(s)";
-                            $_SESSION['utilisateur'] = $newSession;
-                        } 
-                        else {
-                            $errorLog = "<p class='alert alert-danger' role='alert'>Confirmation du mot de passe incorrect</p>";
+                                $cryptedpassword =  password_hash($password, PASSWORD_BCRYPT);
+                                $modelProfil->secure($login); 
+                                $modelProfil->secure($cryptedpassword);
+                                
+                                
+                                $newSession = $modelProfil->update($login, $cryptedpassword, $email, $fetch_utilisateur['id']); // GG WP
+                                echo "changement(s) effectué(s)";
+                                $_SESSION['utilisateur'] = $newSession;
+                            } 
+                            else {
+                                $errorLog = "<p class='alert alert-danger' role='alert'>Confirmation du mot de passe incorrect</p>";
+                            }
+                        }else{
+                            $errorLog = "Cet email est déjà utilisé par un autre utilisateur";
                         }
                     } 
                     else {
