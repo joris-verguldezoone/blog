@@ -14,7 +14,7 @@ require("../libraries/models/Admin.php");
         <input name="newCategorie" id="idnewCategorie" type="text">
         
         <input type="submit" id="submitCategorie" name="Submit_newCategorie">
-
+    </form>
         <?php
         if(isset($_POST['Submit_newCategorie'])){
 
@@ -51,31 +51,35 @@ require("../libraries/models/Admin.php");
                                 // login
                                 // delete
                                  
-                    echo "<td class='tableau_admin'>".$value[0]."</td>"; // id
-                    echo "<td class='tableau_admin'>".$value[1]."</td>";
-                    echo "<td class='tableau_admin'>".$value[2]."</td>";
-                    echo "<td class='tableau_admin'>".$value[3]."</td>";
-                    echo "<form method='GET' action=''>
-                            <td>
-                                <input type='submit' id='Modifier' value='modifier'>
-                                <input type='hidden' name='utilisateur' id='hiddenId' value='".$value[0]."'>
-                            </td>
-                        </form>";
-
-                    echo "<td><input type='submit' value='supprimer'></td>";
-                    echo "</tr>";
+                    echo    "<td class='tableau_admin'>".$value[0]."</td>"; // id
+                    echo    "<td class='tableau_admin'>".$value[1]."</td>";
+                    echo    "<td class='tableau_admin'>".$value[2]."</td>";
+                    echo    "<td class='tableau_admin'>".$value[3]."</td>";
+                    echo    "<form method='GET' action=''>
+                                <td>
+                                    <input type='submit' id='Modifier' value='modifier'>
+                                    <input type='hidden' name='utilisateur' id='hiddenId' value='".$value[0]."'>
+                                </td>
+                                <td>
+                                    <input type='submit' value='supprimer'></td>
+                                </tr>
+                            </form>";
                 }
               ?>
         </table>
         <?php
-        var_dump($users);
         if(isset($_GET['utilisateur'])){ // sans isset = undefined 'modifier' + j'ai pas mis de name a l'input id='Modifier' pour avoir un url plus clair
-            // echo "ta grosse mere";
-            echo $_GET['utilisateur'];
             $modelAdmin = new \Models\Admin();
-            echo $modelAdmin->userModify($_GET['utilisateur']);
-        }
+            $id = $_GET['utilisateur'];
+            echo $modelAdmin->userModify($id);
         
+            if(isset($_POST['adminModifyUser'])){
+                $modelUpdate = new \Models\Admin();
+                $modelUpdate->adminUpdate($_POST['loginUpdate'], $_POST['emailUpdate'], $_POST['id_droitsUpdate'], $id);
+              
+            }
+
+    }
         ?>
 
 
@@ -108,16 +112,4 @@ require("../libraries/models/Admin.php");
                 }            
             ?>
         </table>
-
-
-
-
-
-    <input type="submit" id="submitModify" name="modify" value="Modifier">
-    <input type="submit" id="submitDelete" name="delete" value="Supprimer">
-    <p>Cette page permet aux administrateurs de gérer l’ensemble du site
-(modification et suppression d’articles, création/modification et suppression
-de catégories, d’utilisateurs, droits…)
-</p>
-    </form>
 </main> 

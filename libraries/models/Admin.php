@@ -69,17 +69,34 @@ class Admin extends Model {
                 $tableau[$i][] = $fetch['email'];
                 $tableau[$i][] = $fetch['id_droits'];
                 
-                $tableauDisplay = "<label name='login'>Login</label>
-                <input type='text' id='Login' name='login' value='".$tableau[0][0]."'>
+                $tableauDisplay = "<form action='' method=POST>
+                <label name='login'>Login</label>
+                <input type='text' id='Login' name='loginUpdate' value='".$tableau[0][0]."'>
                 <label name='email'>Email</label>
-                <input type='text' id='Email' name='email' value='".$tableau[0][1]."'>
+                <input type='text' id='Email' name='emailUpdate' value='".$tableau[0][1]."'>
                 <label name='id_droits'>Droits</label>
-                <input type='number' id='Droits' name='id_droits' value='".$tableau[0][2]."'>
-                ";
-              
-    
+                <input type='number' id='Droits' name='id_droitsUpdate' value='".$tableau[0][2]."'>
+
+                <input type='submit' name='adminModifyUser' value='Changements'>
+                </form>";
+                
                 return $tableauDisplay; // on imprime l'affichage dans la view
     
+            }
+            // bon ça commence a faire bcp de fonction ça deuh
+
+            public function adminUpdate($login, $email, $id_droits, $id){ // :)
+
+                $sql = "UPDATE utilisateurs SET login = :login, email = :email, id_droits = :id_droits WHERE id = :id";
+                var_dump($sql);
+                $result = $this->pdo->prepare($sql);
+                $result->bindvalue(':login', $login, \PDO::PARAM_STR);
+                $result->bindvalue(':email', $email, \PDO::PARAM_STR);
+                $result->bindvalue(':id_droits',$id_droits, \PDO::PARAM_INT);
+                $result->bindvalue(':id',$id, \PDO::PARAM_INT);
+                $result->execute();
+                var_dump($result);
+               
             }
 
 }
