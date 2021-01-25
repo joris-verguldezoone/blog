@@ -80,7 +80,7 @@ abstract class Model // <3
    
     public function findAllArticles()
     {
-        $sql = "SELECT  id,titre, article, id_utilisateur, id_categorie, date FROM articles ORDER BY date";  
+        $sql = "SELECT  id, titre, article, id_utilisateur, id_categorie, date FROM articles ORDER BY date";  
         $result = $this->pdo->prepare($sql);
         $result->execute();
 

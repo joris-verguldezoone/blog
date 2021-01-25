@@ -33,7 +33,7 @@ class Admin extends Model {
         $modelCategorie = new \Models\Admin();
         $tableauCategorie = $modelCategorie->findAllCategories();
         
-        foreach ($tableau as $key => $value) 
+        foreach ($tableauCategorie as $key => $value) 
         {
             $nom = $value[0]; // 0 = nom  <---> 1 = id
             $id = $value[1];
@@ -42,7 +42,6 @@ class Admin extends Model {
     }
     public function findAllUsers(){
         $sql = "SELECT id, login, email, id_droits FROM utilisateurs ORDER BY id";
-        var_dump($sql);
         $result = $this->pdo->prepare($sql);
         $result->execute();
         $i = 0;

@@ -46,20 +46,19 @@ require("../libraries/models/Admin.php");
             <?php
             $users = $modelArticle->findAllUsers();
             var_dump($users);
-            $id= 0;
-                foreach ($users as $value){
+                foreach ($users as $key => $value){
                     echo "<tr>";  // droits select nom = id 
                                 // login
                                 // delete
-                                $id = $value[0];
-                    echo "<td class='tableau_admin'>$id</td>"; // id
-                    echo "<td class='tableau_admin'>$value[1]</td>";
-                    echo "<td class='tableau_admin'>$value[2]</td>";
-                    echo "<td class='tableau_admin'>$value[3]</td>";
+                                 
+                    echo "<td class='tableau_admin'>".$value[0]."</td>"; // id
+                    echo "<td class='tableau_admin'>".$value[1]."</td>";
+                    echo "<td class='tableau_admin'>".$value[2]."</td>";
+                    echo "<td class='tableau_admin'>".$value[3]."</td>";
                     echo "<form method='GET' action=''>
                             <td>
-                                <input type='submit' id='Modifier' name='modifier' value='modifier'>
-                                <input type='hidden' name='utilisateur' id='hiddenId' value='".$id."'>
+                                <input type='submit' id='Modifier' value='modifier'>
+                                <input type='hidden' name='utilisateur' id='hiddenId' value='".$value[0]."'>
                             </td>
                         </form>";
 
@@ -70,10 +69,11 @@ require("../libraries/models/Admin.php");
         </table>
         <?php
         var_dump($users);
-        if($_GET['modifier']){
-            echo "ta grosse mere";
+        if(isset($_GET['utilisateur'])){ // sans isset = undefined 'modifier' + j'ai pas mis de name a l'input id='Modifier' pour avoir un url plus clair
+            // echo "ta grosse mere";
+            echo $_GET['utilisateur'];
             $modelAdmin = new \Models\Admin();
-            echo $modelAdmin->userModify($id);
+            echo $modelAdmin->userModify($_GET['utilisateur']);
         }
         
         ?>
