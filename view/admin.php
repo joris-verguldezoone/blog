@@ -46,15 +46,37 @@ require("../libraries/models/Admin.php");
             <?php
             $users = $modelArticle->findAllUsers();
             var_dump($users);
-                  foreach ($users as $key){
-                      echo "<tr>";
-                      foreach ($key as $value){
-                          echo "<td class='tableau_admin'>$value</td>";
-                      }
-                      echo "</tr>";
-                  }
+            $id= 0;
+                foreach ($users as $value){
+                    echo "<tr>";  // droits select nom = id 
+                                // login
+                                // delete
+                                $id = $value[0];
+                    echo "<td class='tableau_admin'>$id</td>"; // id
+                    echo "<td class='tableau_admin'>$value[1]</td>";
+                    echo "<td class='tableau_admin'>$value[2]</td>";
+                    echo "<td class='tableau_admin'>$value[3]</td>";
+                    echo "<form method='GET' action=''>
+                            <td>
+                                <input type='submit' id='Modifier' name='modifier' value='modifier'>
+                                <input type='hidden' name='utilisateur' id='hiddenId' value='".$id."'>
+                            </td>
+                        </form>";
+
+                    echo "<td><input type='submit' value='supprimer'></td>";
+                    echo "</tr>";
+                }
               ?>
         </table>
+        <?php
+        var_dump($users);
+        if($_GET['modifier']){
+            echo "ta grosse mere";
+            $modelAdmin = new \Models\Admin();
+            echo $modelAdmin->userModify($id);
+        }
+        
+        ?>
 
 
         <table class="">
@@ -66,15 +88,24 @@ require("../libraries/models/Admin.php");
                 <th class="tableau_admin">ID CATEGORIE</th>
             </tr>
             <?php
-                    $articles = $modelArticle->findAllArticles();
-                    var_dump($articles);
-                          foreach ($articles as $key){
-                              echo "<tr>";
-                              foreach ($key as $value){
-                                  echo "<td class='tableau_admin'>$value</td>";
-                              }
-                              echo "</tr>";
-                          }            
+                $articles = $modelArticle->findAllArticles();
+                foreach ($articles as $value){      
+                    echo "<tr>";
+                    // titre
+                    // article
+                    // id categorie
+                    // DELETE 
+                        echo "<td class='tableau_admin'>$value[0]</td>";
+                        echo "<td class='tableau_admin'>$value[1]</td>";
+                        echo "<td class='tableau_admin'>$value[2]</td>";
+                        echo "<td class='tableau_admin'>$value[3]</td>";
+                        echo "<td class='tableau_admin'>$value[4]</td>";
+                        echo "<td class='tableau_admin'>$value[5]</td>";
+                        echo "<td><input type='submit' value='modifier'></td>";
+                        echo "<td><input type='submit' value='supprimer'></td>";
+
+                    echo "</tr>";
+                }            
             ?>
         </table>
 

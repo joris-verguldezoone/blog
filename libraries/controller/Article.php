@@ -10,10 +10,12 @@ class Article{
     public $categories = "";
 
 
-    public function createArticle($article, $categories){
+    public function createArticle($titre, $article, $categories){
 
         $articleModel = new \Models\Article();
         $errorLog = "";
+
+        $this->article = $articleModel->secure($_POST['titre']);
         $this->article = $articleModel->secure($_POST['article']);
         $this->categories = $articleModel->secure($_POST['categories']); // pas utile mais dans le cas où l'on hack le html 
         
@@ -31,7 +33,7 @@ class Article{
                      break;
                 }
                 }
-            $articleModel->insertArticle($article,$value[1]);
+            $articleModel->insertArticle($titre, $article,$value[1]);
             echo " votre article a bien été créer";
             }
             else $errorLog = "article doit contenir entre 10 et 500 caracteres";

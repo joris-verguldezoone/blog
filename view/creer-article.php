@@ -11,6 +11,9 @@ require_once('../libraries/models/Article.php');
 <main>
     <form action="" method="POST">
 
+    <label name="titre">Titre</label>
+    <input type="text" id="titreCreerArticle" name="titre">
+
     <label name="article">Article</label>
     <textarea type="text" id="creerArticle" name="article" value="le contenue de mon article..."></textarea>
 
@@ -32,7 +35,7 @@ require_once('../libraries/models/Article.php');
         <?php
          if(isset($_POST['articleSubmit'])){
             $createArticle = new \Controller\Article();
-            $createArticle->createArticle($_POST['article'], $_POST['categories']);
+            $createArticle->createArticle($_POST['titre'],$_POST['article'], $_POST['categories']);
         }
         ?>
 

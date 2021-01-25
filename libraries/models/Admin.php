@@ -59,7 +59,29 @@ class Admin extends Model {
         return $tableau;
         }
     
+        public function userModify($id){ // on utilise l'id pour modifier utilisateur, il faut echo le return 
+            $sql = "SELECT login, email, id_droits FROM utilisateurs WHERE id = '$id' ";
+            $result = $this->pdo->prepare($sql);
+            $result->bindvalue(':id', $id, \PDO::PARAM_INT);
+            $result->execute();
+            $i = 0;
+            $fetch = $result->fetch(\PDO::FETCH_ASSOC);
+                $tableau[$i][] = $fetch['login'];
+                $tableau[$i][] = $fetch['email'];
+                $tableau[$i][] = $fetch['id_droits'];
+                
+                $tableauDisplay = "<label name='login'>Login</label>
+                <input type='text' id='Login' name='login' value='".$tableau[0][0]."'>
+                <label name='email'>Email</label>
+                <input type='text' id='Email' name='email' value='".$tableau[0][1]."'>
+                <label name='id_droits'>Droits</label>
+                <input type='number' id='Droits' name='id_droits' value='".$tableau[0][2]."'>
+                ";
+              
+    
+                return $tableauDisplay; // on imprime l'affichage dans la view
+    
+            }
+
 }
 
-
-?>
