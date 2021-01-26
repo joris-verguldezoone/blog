@@ -90,7 +90,6 @@ class Admin extends Model {
                    break;
                 }
                     
-
                 $tableauDisplay = "<form action='' method=POST>
                 <label name='login'>Login</label>
                 <input type='text' id='Login' name='loginUpdate' value='".$tableau[0][0]."'>
@@ -130,6 +129,14 @@ class Admin extends Model {
                 $result->bindvalue(':id', $id, \PDO::PARAM_INT);
                 $result->execute();
 
+            }
+            public function categoryUpdate($newName, $previousName){
+                $sql = "UPDATE categories SET nom = :newName WHERE nom = :previousName";
+                $result = $this->pdo->prepare($sql);
+                $result->bindValue(':newName', $newName, \PDO::PARAM_STR);
+                $result->bindValue(':previousName',$previousName, \PDO::PARAM_STR);
+                $result->execute();
+                var_dump($result);
             }
 
 }

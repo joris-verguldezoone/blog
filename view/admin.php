@@ -13,11 +13,11 @@ require('../libraries/Http.php');
 
 <main>
     <form action="" method="POST">
-        <label name="newCategorie">Nouvelle catégorie</label>
-        <input name="newCategorie" id="idnewCategorie" type="text">
+        <label for="newCategorie">Nouvelle catégorie</label>
+        <input name="newCategorie" id="idnewCategorie" type="text" placeholder="Ma categorie...">
         
         <input type="submit" id="submitCategorie" name="Submit_newCategorie">
-    </form>
+        </form>
         <?php
         if(isset($_POST['Submit_newCategorie'])){
 
@@ -25,19 +25,63 @@ require('../libraries/Http.php');
             $newCategorie->createNewCategorie($_POST['newCategorie']);
         }
         ?>
-        <input type="text" id="modifyDeleteCategory" name="textCategory" value="">
-        <select name="selectCategory">
-        <?php
-        $modelArticle = new \Models\Admin();
-        $tableau = $modelArticle->findAllCategories();
-        foreach ($tableau as $key => $value) 
-        {
-            $nom = $value[0]; // 0 = nom 1 = id
-            echo "<option value=".$nom.">".$nom."</option>";  
-        }
-        ?> 
+        <form action='' method='POST'> <!-- je différencie le GET et le POST selon si j'vais avoir besoin de données tel que l'id dans l'url + c pratik pour check -->
+            <label for="ModifyCategory">Modifier une catégorie</label>
+            <input type="text" id="modifyDeleteCategory" name="ModifyCategory" placeholder="Modifier...">
+            <select name="selectCategory">
+                <option value="">--Choisir--</option> <!-- jmet une option vide pcq sinon il compte pas l'option pré-selectionné ce fdp --> 
 
-            </select>
+                <?php
+                $modelArticle = new \Models\Admin();
+                $tableau = $modelArticle->findAllCategories();
+                foreach ($tableau as $key => $value) 
+                {
+                    $nom = $value[0]; // 0 = nom 1 = id
+                    echo "<option value=".$nom.">".$nom."</option>";  
+                }
+                ?> 
+
+                </select>
+            <input type='submit' id='ModifyCategorySubmitId' name='ModifyCategorySubmit' value='Modifier'>
+            <input type='submit' id='DeleteCategorySubmitId' name='DeleteCategorySubmit' value='Supprimer'>
+        </form>
+        <?php
+        
+        if(isset($_POST['ModifyCategorySubmit'])){
+            $modelAdmin = new \Models\Admin();
+            $modelAdmin->categoryUpdate($_POST['selectCategory'],$_POST['ModifyCategory']);
+            // $modelHttp = new \Http();
+            // $modelHttp->redirect('admin.php');
+        }
+
+        // if(isset($_GET['deleteUser'])){
+        //     $id = $_GET['idTracker'];
+        //     echo "etes vous sur de vouloir supprimer cet utilisateur?";
+        //     echo "  <form action='' method=POST>
+        //             <input type='submit' name='yes' value='Oui'>
+        //             <input type='submit' name='cancel' value='Annuler'>
+        //             </form>";
+        //             if(isset($_POST['yes'])){
+        //                 $modelDelete = new \Models\Admin();
+        //                 $modelDelete->deleteUser($id);
+        //                 $modelHttp = new \Http();
+        //                 $modelHttp->redirect('admin.php');
+                
+        //             }
+        //             elseif(isset($_POST['cancel'])){
+        //                 $modelHttp = new \Http();
+        //                 $modelHttp->redirect('admin.php');
+        //             }
+        // }
+        
+        ?>
+
+
+
+
+
+
+
 
 <table class="tableau_admin">
             <tr>
