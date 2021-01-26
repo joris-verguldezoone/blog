@@ -41,7 +41,7 @@ class Admin extends Model {
         }
     }
     public function findAllUsers(){
-        $sql = "SELECT id, login, email, id_droits FROM utilisateurs ORDER BY id";
+        $sql = "SELECT u.id, u.login, u.email, d.nom FROM utilisateurs AS u INNER JOIN droits AS d ON u.id_droits = d.id";
         $result = $this->pdo->prepare($sql);
         $result->execute();
         $i = 0;
@@ -50,7 +50,7 @@ class Admin extends Model {
             $tableau[$i][] = $fetch['id'];
             $tableau[$i][] = $fetch['login'];
             $tableau[$i][] = $fetch['email'];
-            $tableau[$i][] = $fetch['id_droits'];
+            $tableau[$i][] = $fetch['nom'];
 
             $i++;
 
@@ -63,19 +63,46 @@ class Admin extends Model {
             $result = $this->pdo->prepare($sql);
             $result->bindvalue(':id', $id, \PDO::PARAM_INT);
             $result->execute();
+            $compareRights = "";
+            $temp1 = "";
+            $temp2 = "";
             $i = 0;
             $fetch = $result->fetch(\PDO::FETCH_ASSOC);
                 $tableau[$i][] = $fetch['login'];
                 $tableau[$i][] = $fetch['email'];
                 $tableau[$i][] = $fetch['id_droits'];
-                
+
+                switch($tableau){
+                    case $tableau[0][2] == 1:
+                    $compareRights = "Utilisateur";
+                    $temp1 = "Moderateur";
+                    $temp2 = "Administrateur";
+                    break;
+                    case $tableau[0][2] == 42:
+                    $compareRights = "Moderateur";
+                    $temp1 = "Utilisateur";
+                    $temp2 = "Administrateur";
+                    break;
+                   case $tableau[0][2] == 1337:
+                   $compareRights = "Administrateur";
+                   $temp1 = "Utilisateur";
+                   $temp2 = "Moderateur";
+                   break;
+                }
+                    
+
                 $tableauDisplay = "<form action='' method=POST>
                 <label name='login'>Login</label>
                 <input type='text' id='Login' name='loginUpdate' value='".$tableau[0][0]."'>
                 <label name='email'>Email</label>
                 <input type='text' id='Email' name='emailUpdate' value='".$tableau[0][1]."'>
                 <label name='id_droits'>Droits</label>
-                <input type='number' id='Droits' name='id_droitsUpdate' value='".$tableau[0][2]."'>
+                <select name='id_droitsUpdate'>
+                <option>".$compareRights."</option>
+                <option>".$temp1."</option>
+                <option>".$temp2."</option>
+
+                </select>
 
                 <input type='submit' name='adminModifyUser' value='Changements'>
                 </form>";
@@ -87,7 +114,7 @@ class Admin extends Model {
 
             public function adminUpdate($login, $email, $id_droits, $id){ // :)
 
-                $sql = "UPDATE utilisateurs SET login = :login, email = :email, id_droits = :id_droits WHERE id = :id";
+                $sql = "UPDATE utilisateurs AS u INNER JOIN droits AS d ON u.id =:id SET u.login =:login , u.email = :email, u.id_droits =:id_droits";
                 var_dump($sql);
                 $result = $this->pdo->prepare($sql);
                 $result->bindvalue(':login', $login, \PDO::PARAM_STR);
@@ -95,8 +122,14 @@ class Admin extends Model {
                 $result->bindvalue(':id_droits',$id_droits, \PDO::PARAM_INT);
                 $result->bindvalue(':id',$id, \PDO::PARAM_INT);
                 $result->execute();
-                var_dump($result);
                
+            }
+            public function deleteUser($id){
+                $sql = "DELETE FROM utilisateurs WHERE id = :id";
+                $result = $this->pdo->prepare($sql);
+                $result->bindvalue(':id', $id, \PDO::PARAM_INT);
+                $result->execute();
+
             }
 
 }

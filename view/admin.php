@@ -1,9 +1,12 @@
 <?php
+
+ob_start();
+
 $database = '../libraries/database.php';
 $utils = "../libraries/utils.php";
 require("../libraries/controller/Admin.php");
 require("../libraries/models/Admin.php");
-
+require('../libraries/Http.php');
 
 ?>
 
@@ -30,7 +33,7 @@ require("../libraries/models/Admin.php");
         foreach ($tableau as $key => $value) 
         {
             $nom = $value[0]; // 0 = nom 1 = id
-            echo "<option value=".$nom.">".$nom."</option>"; // faire les droits admin 
+            echo "<option value=".$nom.">".$nom."</option>";  
         }
         ?> 
 
@@ -45,8 +48,9 @@ require("../libraries/models/Admin.php");
             </tr>
             <?php
             $users = $modelArticle->findAllUsers();
-            var_dump($users);
                 foreach ($users as $key => $value){
+                
+
                     echo "<tr>";  // droits select nom = id 
                                 // login
                                 // delete
@@ -55,15 +59,20 @@ require("../libraries/models/Admin.php");
                     echo    "<td class='tableau_admin'>".$value[1]."</td>";
                     echo    "<td class='tableau_admin'>".$value[2]."</td>";
                     echo    "<td class='tableau_admin'>".$value[3]."</td>";
+
                     echo    "<form method='GET' action=''>
                                 <td>
                                     <input type='submit' id='Modifier' value='modifier'>
                                     <input type='hidden' name='utilisateur' id='hiddenId' value='".$value[0]."'>
                                 </td>
                                 <td>
-                                    <input type='submit' value='supprimer'></td>
-                                </tr>
-                            </form>";
+                                    <input type='submit' name='deleteUser' value='supprimer'>
+                                    <input type='hidden' name='idTracker' id='suppr' value='".$value[0]."'>
+                                </td>
+
+
+                                </form>
+                                </tr>";
                 }
               ?>
         </table>
@@ -74,11 +83,42 @@ require("../libraries/models/Admin.php");
             echo $modelAdmin->userModify($id);
         
             if(isset($_POST['adminModifyUser'])){
-                $modelUpdate = new \Models\Admin();
-                $modelUpdate->adminUpdate($_POST['loginUpdate'], $_POST['emailUpdate'], $_POST['id_droitsUpdate'], $id);
-              
+                $modelUpdate = new \Models\Admin(); // jpourrais créer qu'un seul objet ça serait + opti
+                switch($_POST['id_droitsUpdate']){
+                    case $_POST['id_droitsUpdate'] == "Utilisateur":
+                    $compareRights = "Utilisateur";
+                    $id_droitsUpdate = 1;
+                    case $_POST['id_droitsUpdate'] == "Moderateur":
+                    $compareRights = "Moderateur";
+                    $id_droitsUpdate = 42;
+                    break;
+                   case $_POST['id_droitsUpdate'] == "Administrateur":
+                   $id_droitsUpdate = 1337; 
+                   break;
+                }
+                $modelUpdate->adminUpdate($_POST['loginUpdate'], $_POST['emailUpdate'], $id_droitsUpdate, $id);
+                $modelHttp = new \Http();
+                $modelHttp->redirect('admin.php');
             }
-
+    }
+    if(isset($_GET['deleteUser'])){
+        $id = $_GET['idTracker'];
+        echo "etes vous sur de vouloir supprimer cet utilisateur?";
+        echo "  <form action='' method=POST>
+                <input type='submit' name='yes' value='Oui'>
+                <input type='submit' name='cancel' value='Annuler'>
+                </form>";
+                if(isset($_POST['yes'])){
+                    $modelDelete = new \Models\Admin();
+                    $modelDelete->deleteUser($id);
+                    $modelHttp = new \Http();
+                    $modelHttp->redirect('admin.php');
+            
+                }
+                elseif(isset($_POST['cancel'])){
+                    $modelHttp = new \Http();
+                    $modelHttp->redirect('admin.php');
+                }
     }
         ?>
 
@@ -113,3 +153,7 @@ require("../libraries/models/Admin.php");
             ?>
         </table>
 </main> 
+
+<?php
+ob_end_flush();
+?>
