@@ -9,8 +9,6 @@ require("../libraries/models/Admin.php");
 require('../libraries/Http.php');
 
 ?>
-
-
 <main>
     <form action="" method="POST">
         <label for="newCategorie">Nouvelle catégorie</label>
@@ -25,9 +23,11 @@ require('../libraries/Http.php');
             $newCategorie->createNewCategorie($_POST['newCategorie']);
         }
         ?>
-        <form action='' method='POST'> <!-- je différencie le GET et le POST selon si j'vais avoir besoin de données tel que l'id dans l'url + c pratik pour check -->
-            <label for="ModifyCategory">Modifier une catégorie</label>
-            <input type="text" id="modifyDeleteCategory" name="ModifyCategory" placeholder="Modifier...">
+
+
+
+        <form action='' method='GET'> <!-- je différencie le GET et le POST selon si j'vais avoir besoin de données tel que l'id dans l'url + c pratik pour check -->
+            <label for="SelectCategory">Modifier une catégorie</label>
             <select name="selectCategory">
                 <option value="">--Choisir--</option> <!-- jmet une option vide pcq sinon il compte pas l'option pré-selectionné ce fdp --> 
 
@@ -41,19 +41,30 @@ require('../libraries/Http.php');
                 }
                 ?> 
 
-                </select>
+            </select>
             <input type='submit' id='ModifyCategorySubmitId' name='ModifyCategorySubmit' value='Modifier'>
             <input type='submit' id='DeleteCategorySubmitId' name='DeleteCategorySubmit' value='Supprimer'>
-        </form>
+            </form>
         <?php
-        
-        if(isset($_POST['ModifyCategorySubmit'])){
-            $modelAdmin = new \Models\Admin();
-            $modelAdmin->categoryUpdate($_POST['selectCategory'],$_POST['ModifyCategory']);
+        var_dump($_GET);
+        if(isset($_GET['ModifyCategorySubmit'])){
+            
+            $previousName = $_GET['selectCategory'];
+            echo $_GET['selectCategory']."okchien";
+            var_dump($_GET['selectCategory']);
+            echo "<form action='' method='POST'>";
+            echo "<input type='text' id='modifyDeleteCategory' name='ModifyCategory' value='".$_GET['selectCategory']."'>";
+            echo "<input type='submit' id='SendChangesID' name='SendChanges' value='Envoyer'>";
+            echo "</form>";
+               
+        if(isset($_POST['SendChanges'])){
+               var_dump($_POST);
+               $modelAdmin = new \Models\Admin();
+               $modelAdmin->categoryUpdate($_POST['ModifyCategory'],$previousName);
+        }
             // $modelHttp = new \Http();
             // $modelHttp->redirect('admin.php');
-        }
-
+    }
         // if(isset($_GET['deleteUser'])){
         //     $id = $_GET['idTracker'];
         //     echo "etes vous sur de vouloir supprimer cet utilisateur?";
