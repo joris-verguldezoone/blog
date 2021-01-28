@@ -32,7 +32,7 @@ require_once('../libraries/models/Inscription.php');
 
 <main>
     <form class="block" method="POST" action="inscription.php">
-        <h1><u>Connexion</u></h1>
+        <h1><u>Inscription</u></h1>
 
         <article>
             <label for="login" name="login" class="inp">

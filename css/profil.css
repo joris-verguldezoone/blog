@@ -2,6 +2,11 @@ main{
     min-height:42%;
 }
 
+body{
+    background-image: url("../images/ef589db23da28325deea41ea259d0baa.jpg");
+    background-repeat: no-repeat;
+}
+
 h1{
     margin-top: 10%;
     margin-left: 50%;
@@ -9,7 +14,7 @@ h1{
 
 article{
     margin-top: 5%;
-    margin-left: 30%;
+    margin-left: 35%;
 }
 
 .inp {
