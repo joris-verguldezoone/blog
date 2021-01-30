@@ -80,7 +80,7 @@ abstract class Model // <3
    
     public function findAllArticles()
     {
-        $sql = "SELECT  id, titre, article, id_utilisateur, id_categorie, date FROM articles ORDER BY date";  
+        $sql = "SELECT  a.id, a.titre, a.article, a.id_utilisateur, c.nom, a.date FROM articles AS a INNER JOIN categories AS c WHERE a.id_categorie = c.id ORDER BY date";  
         $result = $this->pdo->prepare($sql);
         $result->execute();
 
@@ -92,7 +92,7 @@ abstract class Model // <3
             $tableau[$i][] = $fetch['titre'];
             $tableau[$i][] = $fetch['article'];
             $tableau[$i][] = $fetch['id_utilisateur'];
-            $tableau[$i][] = $fetch['id_categorie'];
+            $tableau[$i][] = $fetch['nom'];
             $tableau[$i][] = $fetch['date'];
 
             $i++;

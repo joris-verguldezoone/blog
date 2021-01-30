@@ -28,16 +28,17 @@ class Admin extends Model {
             return $result;
         }
 
-    public function modifyCategorie(){
+    public function modifyCategorie(){ // fonction d'affichage
 
         $modelCategorie = new \Models\Admin();
         $tableauCategorie = $modelCategorie->findAllCategories();
-        
+        $i= 0;
         foreach ($tableauCategorie as $key => $value) 
         {
             $nom = $value[0]; // 0 = nom  <---> 1 = id
             $id = $value[1];
-         echo "<option>".$nom."</option>"; //imprimer dans un select voir si ça marche 
+          //imprimer dans un select voir si ça marche 
+         echo "<option value=".$nom.">".$nom."</option>";
         }
     }
     public function findAllUsers(){
@@ -111,7 +112,7 @@ class Admin extends Model {
             }
             // bon ça commence a faire bcp de fonction ça deuh
 
-            public function adminUpdate($login, $email, $id_droits, $id){ // :)
+            public function adminUpdate($login, $email, $id_droits, $id){ // :) renommer en adminUserUpdate
 
                 $sql = "UPDATE utilisateurs AS u INNER JOIN droits AS d ON u.id =:id SET u.login =:login , u.email = :email, u.id_droits =:id_droits";
                 var_dump($sql);
@@ -128,7 +129,6 @@ class Admin extends Model {
                 $result = $this->pdo->prepare($sql);
                 $result->bindvalue(':id', $id, \PDO::PARAM_INT);
                 $result->execute();
-
             }
             public function categoryUpdate($newName, $previousName){
                 $sql = "UPDATE categories SET nom = :newName WHERE nom = :previousName";
@@ -138,6 +138,74 @@ class Admin extends Model {
                 $result->execute();
                 var_dump($result);
             }
+            public function deleteCategory($nom){
+                $sql = "DELETE FROM categories WHERE nom = :nom";
+                $result = $this->pdo->prepare($sql);
+                $result->bindvalue(':nom', $nom, \PDO::PARAM_STR);
+                $result->execute();
+
+            }
+
+            // Articles
+
+            public function articleModify($id){ // on utilise l'id pour modifier utilisateur, il faut echo le return 
+                $sql = "SELECT a.titre, a.article, a.id_utilisateur, c.nom, a.date FROM articles AS a INNER JOIN categories AS c WHERE a.id = '$id' AND a.id_categorie = c.id";
+                $result = $this->pdo->prepare($sql);
+                $result->bindvalue(':id', $id, \PDO::PARAM_INT);
+                $result->execute();
+                $modelModifyArticle = new \Models\Admin();
+                
+
+                $i = 0;
+                $fetch = $result->fetch(\PDO::FETCH_ASSOC);
+                    $tableau[$i][] = $fetch['titre'];
+                    $tableau[$i][] = $fetch['article'];
+                    $tableau[$i][] = $fetch['id_utilisateur'];
+                    $tableau[$i][] = $fetch['nom'];
+                    $tableau[$i][] = $fetch['date'];
+
+                    for($z = 0; $z < isset($optionDisplay); $z++){
+
+                    }
+                    
+                    $tableauDisplay = "<form action='' method=POST>
+                    <label name='login'>Titre</label>
+                    <input type='text' id='Titre' name='titreUpdate' value='".$tableau[0][0]."'>
+                    <label name='email'>Article</label>
+                    <textarea type='text' id='Article' name='articleUpdate' rows='5' cols='33'>".$tableau[0][1]."</textarea>
+                    <label name='id_droits'>id_utilisateur</label>
+                    <input type='text' id='id_utilisateur' name='id_utilisateurUpdate' value='".$tableau[0][2]."'>
+                    <label name='id_droits'>id_categorie</label>
+                    <input type='text' id='idCategoryModifyArticle' name='catagorieUpdate' value='".$tableau[0][3]."'>
+                    <label name='date'>Date</label>
+                    <input type='datetime' id='date' name='dateUpdate' value='".$tableau[0][4]."'>
+    
+                    <input type='submit' name='adminModifyArticle' value='Changements'>
+                    </form>";
+                    
+                    return $tableauDisplay; // on imprime l'affichage dans la view
+        
+                }
+                public function adminArticleUpdate($titre, $article, $id_utilisateur, $id_categorie, $date,$id){ // :)
+
+                    $sql = "UPDATE articles SET titre =:titre , article = :article, id_utilisateur =:id_utilisateur, id_categorie = :id_categorie, date=:date WHERE id=:id"; // c.nom et a.id_categorie = c.id
+                    var_dump($sql);
+                    $result = $this->pdo->prepare($sql);
+                    $result->bindvalue(':titre', $titre, \PDO::PARAM_STR);
+                    $result->bindvalue(':article', $article, \PDO::PARAM_STR);
+                    $result->bindvalue(':id_utilisateur',$id_utilisateur, \PDO::PARAM_INT);
+                    $result->bindvalue(':id_categorie',$id_categorie, \PDO::PARAM_INT);
+                    $result->bindvalue(':date',$date, \PDO::PARAM_STR); // modified
+                    $result->bindvalue(':id',$id, \PDO::PARAM_INT);
+                    $result->execute();
+                   
+                }
+                public function deleteArticle($id){
+                    $sql = "DELETE FROM articles WHERE id = :id";
+                    $result = $this->pdo->prepare($sql);
+                    $result->bindvalue(':id', $id, \PDO::PARAM_INT);
+                    $result->execute();
+                }
 
 }
 

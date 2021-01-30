@@ -17,7 +17,7 @@ class Admin {
                $count = $modelAdmin->ifExistCategorie($newCategorie);
                if($count){ // si n'existe pas 
                    $modelAdmin->insertCategorie($newCategorie);
-                   echo "Nouvelle catégorie créee avec succès";
+                   echo "LA nouvelle catégorie ".$newCategorie." créee avec succès";
                }
                else{
                    $errorLog = "Cette catégorie existe déjà";
