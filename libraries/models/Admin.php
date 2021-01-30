@@ -149,7 +149,7 @@ class Admin extends Model {
             // Articles
 
             public function articleModify($id){ // on utilise l'id pour modifier utilisateur, il faut echo le return 
-                $sql = "SELECT a.titre, a.article, a.id_utilisateur, c.nom, a.date FROM articles AS a INNER JOIN categories AS c WHERE a.id = '$id' AND a.id_categorie = c.id";
+                $sql = "SELECT a.titre, a.article, a.id_utilisateur, c.nom, a.id_categorie, a.date FROM articles AS a INNER JOIN categories AS c WHERE a.id = '$id' AND a.id_categorie = c.id";
                 $result = $this->pdo->prepare($sql);
                 $result->bindvalue(':id', $id, \PDO::PARAM_INT);
                 $result->execute();
@@ -162,6 +162,7 @@ class Admin extends Model {
                     $tableau[$i][] = $fetch['article'];
                     $tableau[$i][] = $fetch['id_utilisateur'];
                     $tableau[$i][] = $fetch['nom'];
+                    $tableau[$i][] = $fetch['id_categorie'];
                     $tableau[$i][] = $fetch['date'];
 
                     for($z = 0; $z < isset($optionDisplay); $z++){
@@ -169,16 +170,17 @@ class Admin extends Model {
                     }
                     
                     $tableauDisplay = "<form action='' method=POST>
-                    <label name='login'>Titre</label>
+                    <label for='titreUpdate'>Titre</label>
                     <input type='text' id='Titre' name='titreUpdate' value='".$tableau[0][0]."'>
-                    <label name='email'>Article</label>
+                    <label for='articleUpdate'>Article</label>
                     <textarea type='text' id='Article' name='articleUpdate' rows='5' cols='33'>".$tableau[0][1]."</textarea>
-                    <label name='id_droits'>id_utilisateur</label>
-                    <input type='text' id='id_utilisateur' name='id_utilisateurUpdate' value='".$tableau[0][2]."'>
-                    <label name='id_droits'>id_categorie</label>
-                    <input type='text' id='idCategoryModifyArticle' name='catagorieUpdate' value='".$tableau[0][3]."'>
-                    <label name='date'>Date</label>
-                    <input type='datetime' id='date' name='dateUpdate' value='".$tableau[0][4]."'>
+                    <label for='id_utilisateurUpdate'>id_utilisateur</label>
+                    <input type='text' id='id_utilisateur' name='id_utilisateurUpdate' value='".$tableau[0][2]."'></br>
+                    CATEGORIE :".$tableau[0][3]."
+                    <label for='categorieUpdate'>id_categorie</label>
+                    <input type='text' id='idCategoryModifyArticle' name='catagorieUpdate' value='".$tableau[0][4]."'></br>
+                    <label for='dateUpdate'>Date</label>
+                    <input type='datetime' id='date' name='dateUpdate' value='".$tableau[0][5]."'></br>
     
                     <input type='submit' name='adminModifyArticle' value='Changements'>
                     </form>";

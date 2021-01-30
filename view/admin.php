@@ -161,14 +161,17 @@ require('../libraries/Http.php');
     }
         ?>
 
-
         <table class="">
             <tr>
                 <th class="tableau_admin">ID</th>
                 <th class="tableau_admin">TITRE</th>
                 <th class="tableau_admin">CONTENU</th>
                 <th class="tableau_admin">ID CREATEUR</th>
+                <th class="tableau_admin">CATEGORIE</th>
                 <th class="tableau_admin">ID CATEGORIE</th>
+                <th class="tableau_admin">DATE</th>
+
+
             </tr>
             <?php
 
@@ -185,6 +188,7 @@ require('../libraries/Http.php');
                         echo "<td class='tableau_admin'>$value[3]</td>";
                         echo "<td class='tableau_admin'>$value[4]</td>";
                         echo "<td class='tableau_admin'>$value[5]</td>";
+                        echo "<td class='tableau_admin'>$value[6]</td>";
 
                     echo    "<form method='GET' action=''>
                                 <td>

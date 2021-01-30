@@ -2,6 +2,9 @@
 
 namespace Controller;
 
+require($Http); // redirect ou refresh
+require_once($utils); // session
+
 class Admin {
 
     public $newCategorie = "";

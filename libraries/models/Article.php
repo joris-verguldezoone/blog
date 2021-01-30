@@ -8,7 +8,7 @@ class Article extends Model{
     public function insertArticle($titre, $article, $categories)
     {
         $temps = time();
-        $today = date('Y-m-d', $temps);
+        $today = date('Y-m-d H:i', $temps);
 
         $id_utilisateur = $_SESSION['utilisateur']['id'] ;
         $sql = "INSERT INTO articles (titre, article, id_utilisateur, id_categorie, date) VALUES (:titre, :article, :id_utilisateur, :id_categorie, :date)";
