@@ -51,4 +51,31 @@ abstract class Model // <3
 
         return $fetch;
     }
+
+    // Cindy
+
+    public function findAllandAffArticles(){
+        $sql = "SELECT a.titre, a.article, u.login, c.nom, a.date FROM articles AS a LEFT OUTER JOIN utilisateurs AS u 
+        ON u.id = a.id_utilisateur LEFT OUTER JOIN categories AS c ON c.id = a.id_categorie 
+        ORDER BY date";
+        $result = $this->pdo->prepare($sql);
+        $result->execute();
+        $i = 0;
+        $tab = array();
+
+        while($fetch = $result->fetch(\PDO::FETCH_ASSOC)){
+            $tab[$i][] = $fetch['titre'];
+            $tab[$i][] = $fetch['article'];
+            $tab[$i][] = $fetch['login'];
+            $tab[$i][] = $fetch['nom'];
+            $tab[$i][] = $fetch['date'];
+
+            $i++;
+        }
+        return $tab;
+
+    }
+
 }
+
+

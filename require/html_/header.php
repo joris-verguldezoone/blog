@@ -29,7 +29,7 @@ if (!isset($_SESSION['connected'])) {
 
     echo "
         <div class= 'margin'>
-            <a class='a_header' href='$index'><img src='images/logo.png' id='logo' alt ='logo'></a>
+            <a class='a_header' href='$index'><img src='images/' id='logo' alt ='logo'></a>
         </div>
         <div class='margin'>
             <a class='a_header' href='$inscription'>Inscription</a>
@@ -41,7 +41,7 @@ if (!isset($_SESSION['connected'])) {
 if (isset($_SESSION['connected'])) {
     echo "
         <div class= 'margin'>
-            <a class='a_header' href='$index'><img src='images/logo.png' id='logo' alt ='logo'></a>
+            <a class='a_header' href='$index'><img src='images/' id='logo' alt ='logo'></a>
         </div>
         <div class='margin'>    
             <a class='a_header' href='$profil'>Profil</a>
@@ -54,7 +54,7 @@ if (isset($_SESSION['connected'])) {
 if (isset($_SESSION['modo'])) {
     echo "
         <div class= 'margin'>
-            <a class='a_header' href='$index'><img src='images/logo.png' id='logo' alt ='logo'></a>
+            <a class='a_header' href='$index'><img src='images/' id='logo' alt ='logo'></a>
         </div>
         <div class='margin'>    
             <a class='a_header' href='$profil'>Profil</a>
@@ -70,7 +70,7 @@ if (isset($_SESSION['modo'])) {
 if (isset($_SESSION['admin'])) {
     echo "
         <div class= 'margin'>
-        <a class='a_header' href='$index'><img src='images/logo.png' id='logo' alt ='logo'></a>
+        <a class='a_header' href='$index'><img src='images/' id='logo' alt ='logo'></a>
         </div>
         <div class='margin'>    
             <a class='a_header' href='$profil'>Profil</a>
