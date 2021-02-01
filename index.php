@@ -1,11 +1,5 @@
 <?php
 session_start();
-//CSS
-$headerCss = "css/header.css";
-$pageCss = "css/index.css";
-$Pagenom = "Accueil";
-$footer = "css/footer.css";
-
 
 //PATHS
 $index = "index.php";
@@ -16,6 +10,13 @@ $admin = "view/admin.php";
 $article = "view/article.php";
 $creerarticle = "view/creer-article.php";
 $indexoff = "index.php?off=1";
+
+//CSS
+$headerCss = "css/header.css";
+$pageCss = "css/index.css";
+$Pagenom = "Accueil";
+$footer = "css/footer.css";
+
 //HEADER
 require('require/html_/header.php');
 

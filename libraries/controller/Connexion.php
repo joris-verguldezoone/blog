@@ -8,7 +8,7 @@ class Connexion
 {
     public $login = "";
     public $password = "";
-
+    
     public function connect($login, $password)
     {
         $this->login = $_POST['login'];

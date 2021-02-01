@@ -6,6 +6,15 @@ $database = '../libraries/database.php';
 $utils = '../libraries/utils.php';
 require_once('../libraries/models/Connexion.php');
 
+//PATHS
+$index = "../index.php";
+$inscription = "inscription.php";
+$connexion = "connexion.php";
+$profil = "profil.php";
+$admin = "admin.php";
+$article = "article.php";
+$creerarticle = "creer-article.php";
+$indexoff = "../index.php?off=1";
 
 //CSS
 $headerCss = "../css/header.css";
@@ -13,18 +22,9 @@ $pageCss = "../css/article.css";
 $Pagenom = "Articles";
 $footer = "../css/footer.css";
 
-
-//PATHS
-$inscription = "inscription.php";
-$connexion = "connexion.php";
-$profil = "profil.php";
-$planning = "planning.php";
-$reservation = "reservation-form.php";
-$index = "../index.php";
-$indexoff = "../index.php?off=1";
-
 //HEADER
 require('../require/html_/header.php');
+
 
 $modelArticleDisplay = new \Models\Connexion();
 $Articles = $modelArticleDisplay->findAllandAffArticles();
@@ -44,10 +44,24 @@ if (isset($_GET['page'])){
         // On limite déjà nos articles
         define("parPage", 5);
 
+        $z = 0;
         // On sélectionne les bons nombres d'articles et les articles correspondant à la page
         for ($i = (parPage) * ($page-1); $i < parPage * $page && $i < count($Articles); $i++){
-           var_dump($Articles[$i]);
+            while (isset($Articles)) {
+                echo "<br /> ".$Articles[$z][0]."<br />";
+                echo $Articles[$z][1]."<br />";
+                echo $Articles[$z][2]."<br />";
+                echo $Articles[$z][3]."<br />";
+                echo $Articles[$z][4]."<br />";
+                $z++;
+
+                if(parPage % 5 == 0){
+                    echo "coucou <br />";
+                    break;
+                }
+            }
         }
+
 
         // On initialise
         $page_item = '';
