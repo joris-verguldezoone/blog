@@ -43,6 +43,7 @@ if (isset($_GET['page'])){
 
         // On limite déjà nos articles
         define("parPage", 5);
+<<<<<<< HEAD
         // On sélectionne les bons nombres d'articles et les articles correspondant à la page
         $z = -1;
         // var_dump($Articles);
@@ -65,6 +66,13 @@ if (isset($_GET['page'])){
             
         }
         
+=======
+
+        // On sélectionne les bons nombres d'articles et les articles correspondant à la page
+        for ($i = (parPage) * ($page-1); $i < parPage * $page && $i < count($Articles); $i++){
+           var_dump($Articles[$i]);
+        }
+>>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
 
         // On initialise
         $page_item = '';
@@ -93,6 +101,7 @@ if (isset($_GET['page'])){
         echo $page_item;
 
         echo "</form>";
+<<<<<<< HEAD
         // $e = 0; 
         // while ($e < 20) {
         //     $limited = $modelArticleDisplay->descriptionLimit($Articles[$e][1]);
@@ -105,6 +114,8 @@ if (isset($_GET['page'])){
         //      .$Articles[$e][4]."<br />";
         //     $e++;
         // }
+=======
+>>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
         ?>
 
 

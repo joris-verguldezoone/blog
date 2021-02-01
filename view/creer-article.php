@@ -27,12 +27,15 @@ $article = "article.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
 
+<<<<<<< HEAD
 //CSS
 $footer = "../css/footer.css";
 $headerCss = "../css/header.css";
 $pageCss = "../css/connexion.css";
 $Pagenom = "Connexion";
 
+=======
+>>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
 //HEADER
 require('../require/html_/header.php');
 

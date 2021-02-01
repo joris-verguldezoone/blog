@@ -29,10 +29,33 @@ $indexoff = "../index.php?off=1";
 require('../require/html_/header.php');
 
 
+// PATHS
+$index = "../index.php";
+$inscription = "inscription.php";
+$connexion = "connexion.php";
+$profil = "profil.php";
+$admin = "admin.php";
+$article = "article.php";
+$creerarticle = "creer-article.php";
+$indexoff = "../index.php?off=1";
+
+//HEADER
+require('../require/html_/header.php');
+
+//CSS
+$headerCss = "../css/header.css";
+$pageCss = "../css/admin.css";
+$Pagenom = "Connexion";
+$footer = "../css/footer.css";
+
 ?>
 <main>
     <form action="" method="POST">
+<<<<<<< HEAD
         <label for="newCategorie">Nouvelle categorie</label>
+=======
+        <label for="newCategorie">Nouvelle catégorie</label>
+>>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
         <input name="newCategorie" id="idnewCategorie" type="text" placeholder="Ma categorie...">
         
         <input type="submit" id="submitCategorie" name="Submit_newCategorie">
@@ -44,10 +67,17 @@ require('../require/html_/header.php');
             $newCategorie->createNewCategorie($_POST['newCategorie']);
         }
         ?>
+<<<<<<< HEAD
         <form action='' method='GET'> <!-- je differencie le GET et le POST selon si j'vais avoir besoin de donnees tel que l'id dans l'url + c pratik pour check -->
             <label for="SelectCategory">Modifier une categorie</label>
             <select name="selectCategory">
                 <option value="">--Choisir--</option> <!-- jmet une option vide pcq sinon il compte pas l'option pre-selectionne ce fdp --> 
+=======
+        <form action='' method='GET'> <!-- je différencie le GET et le POST selon si j'vais avoir besoin de données tel que l'id dans l'url + c pratik pour check -->
+            <label for="SelectCategory">Modifier une catégorie</label>
+            <select name="selectCategory">
+                <option value="">--Choisir--</option> <!-- jmet une option vide pcq sinon il compte pas l'option pré-selectionné ce fdp --> 
+>>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
 
                 <?php
                 $modelArticle = new \Models\Admin();
@@ -85,7 +115,11 @@ require('../require/html_/header.php');
         if(isset($_GET['DeleteCategorySubmit'])){
             $nom = $_GET['selectCategory'];
             $nom = str_replace('_', ' ', $nom);
+<<<<<<< HEAD
             echo "etes vous sur de vouloir supprimer la categorie ".$nom."?";
+=======
+            echo "etes vous sur de vouloir supprimer la catégorie ".$nom."?";
+>>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
             echo "  <form action='' method=POST>
                     <input type='submit' name='yes' value='Oui'>
                     <input type='submit' name='cancel' value='Annuler'>
@@ -143,7 +177,11 @@ require('../require/html_/header.php');
             echo $modelAdmin->userModify($id);
         
             if(isset($_POST['adminModifyUser'])){
+<<<<<<< HEAD
                 $modelUpdate = new \Models\Admin(); // jpourrais creer qu'un seul objet ca serait + opti
+=======
+                $modelUpdate = new \Models\Admin(); // jpourrais créer qu'un seul objet ça serait + opti
+>>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
                 switch($_POST['id_droitsUpdate']){
                     case $_POST['id_droitsUpdate'] == "Utilisateur":
                     $compareRights = "Utilisateur";

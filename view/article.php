@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 //LIBRARIES
 $Http = "../libraries/Http.php";
 $database = '../libraries/database.php';
@@ -8,12 +9,19 @@ $Admin = '../libraries/models/Admin.php';
 require_once('../libraries/models/Article.php');
 require_once('../libraries/controller/Commentaire.php');
 
+=======
+session_start();
+>>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
 //CSS
 $headerCss = "../css/header.css";
 $pageCss = "../css/article.css";
 $Pagenom = "Article";
 $footer = "../css/footer.css";
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
 //PATHS
 $inscription = "inscription.php";
 $connexion = "connexion.php";
@@ -26,12 +34,16 @@ $indexoff = "../index.php?off=1";
 //HEADER
 require('../require/html_/header.php');
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
 ?>
 
 <main>
 
+<<<<<<< HEAD
 <?php 
 $articleModel = new \Models\Article();
 $article = $articleModel->findOneArticle($_GET['articleSelected']); // on prend le name de l'input du formulaire envoyé ici
@@ -64,6 +76,8 @@ if(isset($_POST['submitComment'])){
 }
      ?>
 
+=======
+>>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
 </main>
 
 <?php
