@@ -6,42 +6,56 @@ $utils = '../libraries/utils.php';
 require('../libraries/controller/Profil.php');
 require('../libraries/models/Profil.php');
 require_once($utils);
-//CSS
-$bootstrap = "../css/bootstrap.min.css";
-$headerCss = "../css/header.css";
-$pagesCss = "../css/profil.css";
-$footerCss = "../css/footer.css";
+
 
 //PATHS
+$index = "../index.php";
 $inscription = "inscription.php";
 $connexion = "connexion.php";
 $profil = "profil.php";
-$planning = "planning.php";
-$reservation = "reservation-form.php";
-$index = "../index.php";
+$admin = "admin.php";
+$article = "article.php";
+$creerarticle = "creer-article.php";
+$indexoff = "../index.php?off=1";
+
+//CSS
+$headerCss = "../css/header.css";
+$pageCss = "../css/profil.css";
+$Pagenom = "Profil";
+$footer = "../css/footer.css";
 //HEADER
 require('../require/html_/header.php');
 
 
 ?>
 <main>
-    <section>
-            <form class="block" method="POST" action="">
-            <h2>Profil</h2>
+    <form class="block" method="POST" action="inscription.php">
+        <h1><u>Profil</u></h1>
 
-                <label name="login">Nouveau login</label>
-                <input type="text" id="profilLogin" name="login" value="<?php echo $_SESSION['utilisateur']['login'];?>">
+        <article>
+            <label for="login" name="login" class="inp">
+                <input type="text" id="profilLogin" name="login" placeholder="&nbsp;" value="<?php echo $_SESSION['utilisateur']['login'];?>">
+                <span class="label">New Login</span>
+                <span class="focus-bg"></span>
+            </label>
+            <label for="password" name="password" class="inp">
+                <input type="password" id="profilPassword" name="password" placeholder="&nbsp;">
+                <span class="label">New Password</span>
+                <span class="focus-bg"></span>
+            </label></br>
+            <label for="confirm_password" name="password" class="inp">
+                <input type="password" id="profilConfirm_password" name="confirm_password" placeholder="&nbsp;">
+                <span class="label">Confirm New Password</span>
+                <span class="focus-bg"></span>
+            </label>
+            <label for="email" name="email" class="inp">
+                <input type="text" id="inscriptionEmail" name="email" placeholder="&nbsp;" value="<?php echo $_SESSION['utilisateur']['email'];?>">
+                <span class="label">New Email</span>
+                <span class="focus-bg"></span>
+            </label>
+        </article>
 
-                <label name="password">Nouveau password</label>
-                <input type="password" id="profilPassword" name="password">
-
-                <label name="confirm_password">Nouveau confirm password</label>
-                <input type="password" id="profilConfirm_password" name="confirm_password">
-
-                <label name="email">Nouveau Email</label>
-                <input type="text" id="profilEmail" name="email" value="<?php echo $_SESSION['utilisateur']['email'];?>">
-
-                <input type="submit" id="inscriptionSubmit" value="register" name="register">
+        <input type="submit" id="profilSubmit" value="update" name="register">
             <?php
 
     if (isset($_POST['register'])) {
@@ -51,10 +65,10 @@ require('../require/html_/header.php');
     }
     ?>
         </form>
-    </section>
 </main>
-    <?php
-    //FOOTER
-    $img_signature = '../images/netero.png';
-    require_once('../require/html_/footer.php');
-    ?>
+<?php
+//FOOTER
+$img_cindy = '../images/rondoudou.png';
+$img_joris = '../images/netero.png';
+require_once('../require/html_/footer.php');
+?>
