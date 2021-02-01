@@ -1,0 +1,45 @@
+
+footer{
+    width:100%;
+    padding-top:50px;
+    height:50px;
+}
+
+#footer{
+    display: flex;
+    justify-content: center;
+}
+
+.margin_foot{
+    margin-right: 5%;
+    font-size: 30px;
+}
+
+@font-face {
+    font-family: 'Zenzai-Itacha.ttf';
+    src: url("../fonts/signature/Zenzai-Itacha.ttf");
+}
+
+.signature{
+    font-family: 'Zenzai-Itacha.ttf';
+}
+
+.footer_article_signature{
+    display: flex;
+    flex-direction: row;
+}
+
+.dev_img_dimension{
+    width: 25%;
+}
+
+.dev_img_dimension_jo{
+    width: 60%;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 2vh;
+}
