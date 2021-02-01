@@ -1,9 +1,40 @@
 <?php
+//LIBRARIES
 $Http = "../libraries/Http.php";
 $database = '../libraries/database.php';
 $utils = "../libraries/utils.php";
 require_once('../libraries/controller/Article.php');
 require_once('../libraries/models/Article.php');
+
+//PATHS
+$index = "../index.php";
+$inscription = "inscription.php";
+$connexion = "connexion.php";
+$profil = "profil.php";
+$admin = "admin.php";
+$article = "article.php";
+$creerarticle = "creer-article.php";
+$indexoff = "../index.php?off=1";
+
+
+//PATHS
+$index = "../index.php";
+$inscription = "inscription.php";
+$connexion = "connexion.php";
+$profil = "profil.php";
+$admin = "admin.php";
+$article = "article.php";
+$creerarticle = "creer-article.php";
+$indexoff = "../index.php?off=1";
+
+//CSS
+$footer = "../css/footer.css";
+$headerCss = "../css/header.css";
+$pageCss = "../css/connexion.css";
+$Pagenom = "Connexion";
+
+//HEADER
+require('../require/html_/header.php');
 
 ?>
 
@@ -42,7 +73,10 @@ require_once('../libraries/models/Article.php');
 
     </form>
 
-
-
-
 </main>
+<?php
+//FOOTER
+$img_cindy = '../images/rondoudou.png';
+$img_joris = '../images/netero.png';
+require_once('../require/html_/footer.php');
+?>

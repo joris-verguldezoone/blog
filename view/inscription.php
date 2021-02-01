@@ -1,34 +1,65 @@
 <?php
+session_start();
 //LIBRARIES
 $Http = '../libraries/Http.php';
 $database = '../libraries/database.php';
 $utils = '../libraries/utils.php';
+
+//CSS
+$headerCss = "../css/header.css";
+$pageCss = "../css/inscription.css";
+$Pagenom = "Inscription";
+$footer = "../css/footer.css";
+
+
+//PATHS
+$index = "../index.php";
+$inscription = "inscription.php";
+$connexion = "connexion.php";
+$profil = "profil.php";
+$admin = "admin.php";
+$article = "article.php";
+$creerarticle = "creer-article.php";
+$indexoff = "../index.php?off=1";
+
+//HEADER
+require('../require/html_/header.php');
+
 require_once('../libraries/controller/Inscription.php');
 require_once('../libraries/models/Inscription.php');
 
 ?>
 
 <main>
+    <form class="block" method="POST" action="inscription.php">
+        <h1><u>Inscription</u></h1>
 
-    <section>
-            <form class="block" method="POST" action="">
-            <h2>Inscription</h2>
+        <article>
+            <label for="login" name="login" class="inp">
+                <input type="text" id="ConnexionLogin" name="login" placeholder="&nbsp;">
+                <span class="label">Login</span>
+                <span class="focus-bg"></span>
+            </label>
+            <label for="password" name="password" class="inp">
+                <input type="password" id="ConnexionLogin" name="password" placeholder="&nbsp;">
+                <span class="label">Password</span>
+                <span class="focus-bg"></span>
+            </label></br>
+            <label for="confirm_password" name="password" class="inp">
+                <input type="password" id="inscriptionConfirm_password" name="confirm_password" placeholder="&nbsp;">
+                <span class="label">Confirm Password</span>
+                <span class="focus-bg"></span>
+            </label>
+            <label for="email" name="email" class="inp">
+                <input type="text" id="inscriptionEmail" name="email" placeholder="&nbsp;">
+                <span class="label">Email</span>
+                <span class="focus-bg"></span>
+            </label>
+        </article>
 
-                <label name="login">Login</label>
-                <input type="text" id="inscriptionLogin" name="login"><br />
+        <input type="submit" id="inscriptionSubmit" value="register" name="register">
 
-                <label name="password">Password</label>
-                <input type="password" id="inscriptionPassword" name="password"><br />
-
-                <label name="confirm_password">Confirm password</label>
-                <input type="password" id="inscriptionConfirm_password" name="confirm_password"><br />
-
-                <label name="email">Email</label>
-                <input type="text" id="inscriptionEmail" name="email"><br />
-
-                <input style="margin-bottom:30px;" type="submit" id="inscriptionSubmit" value="register" name="register">
-            </form>
-                <?php
+        <?php
 
 if (isset($_POST['register'])) {
     
@@ -36,14 +67,12 @@ if (isset($_POST['register'])) {
     $newUser->register($_POST['login'], $_POST['password'], $_POST['confirm_password'], $_POST['email']);
 }
 
-?>
-
+        ?>
         </form>
-    </section>
-
     </main>
-    <?php
+<?php
 //FOOTER
-$img_signature = '../images/netero.png';
-require('../require/html_/footer.php');
+$img_cindy = '../images/rondoudou.png';
+$img_joris = '../images/netero.png';
+require_once('../require/html_/footer.php');
 ?>

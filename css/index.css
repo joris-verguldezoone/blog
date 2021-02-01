@@ -1,0 +1,25 @@
+main{
+    min-height:58%;
+}
+
+a{
+    color: white;
+}
+
+body{
+    background-image: url("../images/imperial_stormtrooper-wallpaper-1920x1080.jpg");
+}
+
+h1{
+    text-align: center;
+    margin-top: 5%;
+}
+
+article{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 27px;
+    margin-top: 9%;
+
+}
