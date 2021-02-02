@@ -18,10 +18,16 @@ echo "
                     <span></span>
                     <span></span>
                     <span></span>
-                <ul id='menu'>
-                    <a href='#'><li>Gestion</li></a>
-                    <a href='#'><li>FPS</li></a>
-                    <a href='#'><li>MMORPG</li></a>
+                <ul id='menu'>";
+                $categoriesModel = new \Models\Admin();
+                $tab = $categoriesModel->findAllCategories();
+                echo "<form method='GET' action='$articlesForm'>";
+                foreach($tab as $value){
+                    $titreCategorie = strtoupper($value[0]);
+                    echo "<button type='submit'><li>".$titreCategorie."</li></button>";
+                    echo "<input type='hidden' name='idCategorie' value='".$value[1]."'>";
+                }
+                echo"</form>
                 </ul>
             </div>";
 

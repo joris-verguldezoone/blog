@@ -15,6 +15,9 @@ $pageCss = "../css/admin.css";
 $Pagenom = "Connexion";
 $footer = "../css/footer.css";
 
+//FORM 
+$articlesForm = 'articles.php';
+
 // PATHS
 $index = "../index.php";
 $inscription = "inscription.php";

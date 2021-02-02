@@ -6,7 +6,10 @@ $utils = '../libraries/utils.php';
 require('../libraries/controller/Profil.php');
 require('../libraries/models/Profil.php');
 require_once($utils);
+require("../libraries/models/Admin.php");
 
+//FORM 
+$articlesForm = 'articles.php';
 
 //PATHS
 $index = "../index.php";

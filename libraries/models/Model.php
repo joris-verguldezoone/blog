@@ -142,7 +142,7 @@ abstract class Model // <3
             $tab[$i][] = $fetch['date'];
             
             $i++;
-            $this->description = $fetch['article'];
+            // $this->description = $fetch['article'];
         }
         return $tab;
     }
@@ -164,4 +164,25 @@ abstract class Model // <3
         return $fetch;
     }
 
+    public function findArticleByCategories($id){
+        $sql = "SELECT a.id, a.titre, a.article, u.login, c.nom, a.date FROM articles AS a LEFT OUTER JOIN utilisateurs AS u 
+        ON u.id = a.id_utilisateur LEFT OUTER JOIN categories AS c ON c.id = a.id_categorie WHERE a.id_categorie = :id";
+
+        $result = $this->pdo->prepare($sql);
+        $result->bindvalue(":id",$id,\PDO::PARAM_INT);
+        $result->execute();
+        $i = 0;
+        while($fetch = $result->fetch(\PDO::FETCH_ASSOC)){
+            $tab[$i][] = $fetch['id']; // attribut qui va etre utilisé en GET
+            $tab[$i][] = $fetch['titre'];
+            $tab[$i][] = $fetch['article'];
+            $tab[$i][] = $fetch['login'];
+            $tab[$i][] = $fetch['nom'];
+            $tab[$i][] = $fetch['date'];
+            
+            $i++;
+            $this->description = $fetch['article'];
+        }
+        return $tab;
+    }
 }

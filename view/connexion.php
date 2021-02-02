@@ -6,12 +6,16 @@ $database = '../libraries/database.php';
 $utils = "../libraries/utils.php";
 require('../libraries/controller/Connexion.php');
 require('../libraries/models/Connexion.php');
+require("../libraries/models/Admin.php");
 
 //CSS
 $footer = "../css/footer.css";
 $headerCss = "../css/header.css";
 $pageCss = "../css/connexion.css";
 $Pagenom = "Connexion";
+
+//FORM 
+$articlesForm = 'articles.php';
 
 //PATHS
 $index = "../index.php";

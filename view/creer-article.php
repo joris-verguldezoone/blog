@@ -5,6 +5,7 @@ $database = '../libraries/database.php';
 $utils = "../libraries/utils.php";
 require_once('../libraries/controller/Article.php');
 require_once('../libraries/models/Article.php');
+require("../libraries/models/Admin.php");
 
 //PATHS
 $index = "../index.php";
@@ -16,6 +17,8 @@ $article = "article.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
 
+//FORM 
+$articlesForm = 'articles.php';
 
 //PATHS
 $index = "../index.php";

@@ -14,6 +14,9 @@ $pageCss = "../css/article.css";
 $Pagenom = "Article";
 $footer = "../css/footer.css";
 
+//FORM 
+$articlesForm = 'articles.php';
+
 //PATHS
 $inscription = "inscription.php";
 $connexion = "connexion.php";
@@ -33,6 +36,7 @@ require('../require/html_/header.php');
 <main>
 
 <?php 
+
 $articleModel = new \Models\Article();
 $article = $articleModel->findOneArticle($_GET['articleSelected']); // on prend le name de l'input du formulaire envoyé ici
     echo $article[0][1]."<br />";

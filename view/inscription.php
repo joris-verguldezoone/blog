@@ -1,9 +1,10 @@
 <?php
-session_start();
 //LIBRARIES
 $Http = '../libraries/Http.php';
 $database = '../libraries/database.php';
 $utils = '../libraries/utils.php';
+require("../libraries/models/Admin.php");
+
 
 //CSS
 $headerCss = "../css/header.css";
@@ -11,6 +12,8 @@ $pageCss = "../css/inscription.css";
 $Pagenom = "Inscription";
 $footer = "../css/footer.css";
 
+//FORM 
+$articlesForm = 'articles.php';
 
 //PATHS
 $index = "../index.php";

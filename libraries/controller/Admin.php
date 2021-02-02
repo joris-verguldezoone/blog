@@ -94,10 +94,10 @@ class Admin {
             foreach ($articles as $value){      
                 echo "<tr>";
                // id // titre // article //id_utilisateur // id categorie // date 
-               
+               $contenu = $adminModel->descriptionLimit($value[2]); // on va éviter les gros pavés hein 
                     echo "<td class='tableau_admin'>$value[0]</td>";
                     echo "<td class='tableau_admin'>$value[1]</td>";
-                    echo "<td class='tableau_admin'>$value[2]</td>";
+                    echo "<td class='tableau_admin'>$contenu</td>";
                     echo "<td class='tableau_admin'>$value[3]</td>";
                     echo "<td class='tableau_admin'>$value[4]</td>";
                     echo "<td class='tableau_admin'>$value[5]</td>";

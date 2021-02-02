@@ -5,7 +5,9 @@ $Http = "../libraries/Http.php";
 $database = '../libraries/database.php';
 $utils = '../libraries/utils.php';
 require_once('../libraries/models/Connexion.php');
-
+require("../libraries/models/Admin.php");
+require_once('../libraries/Controller/Article.php');
+require_once('../libraries/Models/Article.php');
 
 //CSS
 $headerCss = "../css/header.css";
@@ -13,6 +15,8 @@ $pageCss = "../css/article.css";
 $Pagenom = "Articles";
 $footer = "../css/footer.css";
 
+//FORM 
+$articlesForm = 'articles.php';
 
 //PATHS
 $inscription = "inscription.php";
@@ -26,9 +30,17 @@ $indexoff = "../index.php?off=1";
 //HEADER
 require('../require/html_/header.php');
 
-$modelArticleDisplay = new \Models\Connexion();
-$Articles = $modelArticleDisplay->findAllandAffArticles();
 
+
+
+if(isset($_GET['idCategorie'])){
+    $articleController = new \Controller\Article();
+    $articleController->articleByCategorieDisplay($_GET['idCategorie']);
+}
+if(!isset($_GET['idCategorie'])){
+    $modelArticleDisplay = new \Models\Connexion();
+$Articles = $modelArticleDisplay->findAllandAffArticles();
+}
 $page = 1;
 
 if (isset($_GET['page'])){
