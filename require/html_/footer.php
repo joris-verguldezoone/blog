@@ -65,5 +65,6 @@ echo "
         <div>
     </div>
     </section>
-</footer>";
+</footer>
+</body>";
 ?>
