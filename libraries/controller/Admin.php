@@ -15,14 +15,25 @@ class Admin {
 
         $modelAdmin = new \Models\Admin();
         $this->newCategorie = $modelAdmin->secure($_POST['newCategorie']);
+        $categorieColor = $modelAdmin->secure($_POST['categoryColor']);
         $errorLog  = "";
         if(!empty($newCategorie)){
             $newCategorie_Len = strlen($newCategorie);
+
             if($newCategorie_Len >= 2 && $newCategorie_Len <= 20){
-               $count = $modelAdmin->ifExistCategorie($newCategorie);
-               if($count){ // si n'existe pas 
-                   $modelAdmin->insertCategorie($newCategorie);
-                   echo "LA nouvelle catégorie ".$newCategorie." créee avec succès";
+                $count = $modelAdmin->ifExistCategorie($newCategorie);
+
+                if(!$count){ // si n'existe pas 
+                    $existColor = $modelAdmin->ifExistColor($categorieColor);
+                    if(!$existColor){
+
+                        $modelAdmin->insertCategorie($newCategorie,$categorieColor);
+                        echo "LA nouvelle catégorie ".$newCategorie." créee avec succès";
+                    }
+                    else{
+                        $errorLog = "Cette couleur est déjà utilisé par une autre categorie, seul 9 categories peuvent etre créer, a part si on paye plus le dev";
+                    }
+                    
                }
                else{
                    $errorLog = "Cette catégorie existe déjà";

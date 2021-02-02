@@ -39,11 +39,12 @@ require('../require/html_/header.php');
 
 $articleModel = new \Models\Article();
 $article = $articleModel->findOneArticle($_GET['articleSelected']); // on prend le name de l'input du formulaire envoyé ici
-    echo $article[0][1]."<br />";
+    
+    echo "<div style='background-color:".$article[0][5].";'>".$article[0][1]."<br />";
     echo $article[0][2]."<br />";
     echo $article[0][3]."<br />";
     echo $article[0][4]."<br />";
-    echo $article[0][5]."<br />";
+    echo $article[0][6]."</div><br />";
 
     $count = $articleModel->commentaireVerify($_GET['articleSelected']);
     var_dump($count);

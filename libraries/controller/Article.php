@@ -44,18 +44,18 @@ class Article{
 
     public function articleByCategorieDisplay($id){
         $articleModel = new \Models\Article();
-    $articles =  $articleModel->findArticleByCategories($id);
-    $i = 0;
-    foreach($articles as $value){
-    echo $value[$i][0];
-    echo $value[$i][1];
-    echo $value[$i][2];
-    echo $value[$i][3];
-    echo $value[$i][4];
-    echo $value[$i][5];
-    
-    $i++;
-    }
+        $articles =  $articleModel->findArticleByCategories($id);
+
+        foreach($articles as $value)
+        {
+            echo '<div style="background-color:'.$value[5].'">';
+            echo $value[1].'<br />';
+            echo $value[2].'<br />';
+            echo $value[3].'<br />';
+            echo $value[4].'<br />';
+            echo $value[6].'</div>';
+
+        }
     }
 
 }

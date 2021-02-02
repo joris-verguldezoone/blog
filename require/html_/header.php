@@ -19,15 +19,37 @@ echo "
                     <span></span>
                     <span></span>
                 <ul id='menu'>";
-                $categoriesModel = new \Models\Admin();
-                $tab = $categoriesModel->findAllCategories();
-                echo "<form method='GET' action='$articlesForm'>";
-                foreach($tab as $value){
-                    $titreCategorie = strtoupper($value[0]);
-                    echo "<button type='submit'><li>".$titreCategorie."</li></button>";
-                    echo "<input type='hidden' name='idCategorie' value='".$value[1]."'>";
-                }
-                echo"</form>
+                
+               ?>
+                <form method='GET' action='<?php echo $articlesForm;?>'> <!-- je differencie le GET et le POST selon si j'vais avoir besoin de donnees tel que l'id dans l'url + c pratik pour check -->
+                    <label for="selectSearchCategory">Rechercher une catégorie</label>
+                    <select name="selectSearchCategory">
+                        <option value="">--Choisir--</option> <!-- jmet une option vide pcq sinon il compte pas l'option pre-selectionne ce fdp --> 
+
+                        <?php
+                        $modelArticle = new \Models\Admin();
+                        $tableau = $modelArticle->findAllCategories();
+                        foreach ($tableau as $key => $value) 
+                        {
+                            $nom = $value[0]; // 0 = nom 1 = id
+                            $nom = str_replace(' ', '_', $nom); // a refactoriser plus tard en fonction d'appel \Models\
+                            $nom = strtoupper($nom);
+                            $id = $value[1];
+        
+                            echo "<option value=".$nom.">".$nom."</option>";  
+                        }
+                        ?> 
+        
+                    </select>
+                    <button type='submit' id='submitSearchId' name='submitSearchCategory'>Rechercher</button>
+                    <?php if(isset($_GET['selectSearchCategory'])) $_GET['selectSearchCategory'] = str_replace('_', ' ', $_GET['selectSearchCategory']);
+                                                
+
+                    ?>
+                    </form>
+<?php
+                
+                echo"
                 </ul>
             </div>";
 
