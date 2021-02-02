@@ -4,7 +4,8 @@ namespace Controller;
 
 require($Http); // redirect ou refresh
 require_once($utils); // session
-
+require($Admin);
+require($Commentaire);
 class Commentaire{
 
 
@@ -30,10 +31,22 @@ class Commentaire{
 
         }else $errorLog = "Veuillez entrer des caracteres dans les champs";
         
-        
-        
         echo $errorLog;
     }
+    
+    public function commentDisplay($id_article){
 
+        $commentModel = new \Models\Commentaire();
+        $tab = $commentModel->commentDisplay($id_article);
+        $i = 0;
+        foreach($tab as $value)
+        {
+            echo "<div>".$tab[$i][0]."<br/>
+                    ".$tab[$i][1]."<br/>
+                    <p class='droitBold';>".$tab[$i][2]."</p><br/>
+                    ".$tab[$i][3]."<br/></div>";
+                    $i++;
+        } //login commentaire droit date
+    }
 }
 ?>

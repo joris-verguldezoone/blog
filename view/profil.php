@@ -1,5 +1,4 @@
 <?php
-session_start();
 //LIBRARIES
 $Http = "../libraries/Http.php";
 $database = '../libraries/database.php';
@@ -7,6 +6,7 @@ $utils = '../libraries/utils.php';
 require('../libraries/controller/Profil.php');
 require('../libraries/models/Profil.php');
 require_once($utils);
+
 
 //PATHS
 $index = "../index.php";
@@ -20,12 +20,12 @@ $indexoff = "../index.php?off=1";
 
 //CSS
 $headerCss = "../css/header.css";
-$pageCss = "../css/connexion.css";
-$Pagenom = "Création d'un article";
+$pageCss = "../css/profil.css";
+$Pagenom = "Profil";
 $footer = "../css/footer.css";
-
 //HEADER
 require('../require/html_/header.php');
+
 
 ?>
 <main>
@@ -57,7 +57,6 @@ require('../require/html_/header.php');
 
         <input type="submit" id="profilSubmit" value="update" name="register">
             <?php
-                var_dump($_SESSION['utilisateur']);
 
     if (isset($_POST['register'])) {
         

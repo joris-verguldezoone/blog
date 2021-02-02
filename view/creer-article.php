@@ -16,14 +16,26 @@ $article = "article.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
 
+
+//PATHS
+$index = "../index.php";
+$inscription = "inscription.php";
+$connexion = "connexion.php";
+$profil = "profil.php";
+$admin = "admin.php";
+$article = "article.php";
+$creerarticle = "creer-article.php";
+$indexoff = "../index.php?off=1";
+
 //CSS
+$footer = "../css/footer.css";
 $headerCss = "../css/header.css";
 $pageCss = "../css/connexion.css";
-$Pagenom = "Création d'un article";
-$footer = "../css/footer.css";
+$Pagenom = "Connexion";
 
 //HEADER
 require('../require/html_/header.php');
+
 ?>
 
 
