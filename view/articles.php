@@ -44,23 +44,27 @@ if (isset($_GET['page'])){
         // On limite déjà nos articles
         define("parPage", 5);
         // On sélectionne les bons nombres d'articles et les articles correspondant à la page
-        $z = 0;
+        $z = -1;
+        // var_dump($Articles);
         for ($i = (parPage) * ($page-1); $i < parPage * $page && $i < count($Articles); $i++){
+            
+            $z = $z +1;
            while (isset($Articles)) {
+               $id = $Articles[$i][0];
+               $descriptionLimit = $modelArticleDisplay->descriptionLimit($Articles[$i][2]);
                echo 
-               "<br /><a href='admin.php'> ".$Articles[$z][0]."<br />".
-                $Articles[$z][1]."<br />"
-                .$Articles[$z][2]."<br />"
-                .$Articles[$z][3]."<br />"
-                .$Articles[$z][4]."</a><br />";
-               $z++;
-              
-               if(parPage % 5 == 0){
-                   echo "coucou <br />";
-                   break;
-               }
+               "<br /><form method='GET' action='article.php'><input type='hidden' name='articleSelected' id='hiddenId' value='".$id."'><button type='submit'>".$Articles[$i][1]."<br />"
+               .$descriptionLimit."<br />"
+               .$Articles[$i][3]."<br />"
+               .$Articles[$i][4]."<br />"
+               .$Articles[$i][5]."</button><br /></form>";
+               
+                break; // ce break permet de garde la structure de 5 par 5
+                
             }
+            
         }
+        
 
         // On initialise
         $page_item = '';
@@ -89,6 +93,18 @@ if (isset($_GET['page'])){
         echo $page_item;
 
         echo "</form>";
+        // $e = 0; 
+        // while ($e < 20) {
+        //     $limited = $modelArticleDisplay->descriptionLimit($Articles[$e][1]);
+        //     var_dump($limited);
+        //     echo 
+        //     "<br />".$Articles[$e][0]."<br />".
+        //      $limited."<br />"
+        //      .$Articles[$e][2]."<br />"
+        //      .$Articles[$e][3]."<br />"
+        //      .$Articles[$e][4]."<br />";
+        //     $e++;
+        // }
         ?>
 
 
