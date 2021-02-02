@@ -40,10 +40,23 @@ class Article{
         } 
         else $errorLog = " veuillez remplir les champs ";
 
-// declarer un objet model 
-
     }
 
+    public function articleByCategorieDisplay($id){
+        $articleModel = new \Models\Article();
+        $articles =  $articleModel->findArticleByCategories($id);
+
+        foreach($articles as $value)
+        {
+            echo '<div style="background-color:'.$value[5].'">';
+            echo $value[1].'<br />';
+            echo $value[2].'<br />';
+            echo $value[3].'<br />';
+            echo $value[4].'<br />';
+            echo $value[6].'</div>';
+
+        }
+    }
 
 }
 

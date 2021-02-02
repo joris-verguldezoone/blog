@@ -1,11 +1,21 @@
 <?php
-session_start();
+//LIBRARIES
+$Http = "libraries/Http.php";
+$database = 'libraries/database.php';
+$utils = 'libraries/utils.php';
+$Commentaire = 'libraries/models/Commentaire.php';
+$Admin = 'libraries/models/Admin.php';
+require_once('libraries/models/Article.php');
+require_once('libraries/controller/Commentaire.php');
+
 //CSS
 $headerCss = "css/header.css";
 $pageCss = "css/index.css";
 $Pagenom = "Accueil";
 $footer = "css/footer.css";
 
+//FORM 
+$articlesForm = 'view/articles.php';
 
 //PATHS
 $index = "index.php";

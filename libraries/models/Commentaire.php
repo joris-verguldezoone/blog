@@ -21,9 +21,9 @@ class Commentaire extends Model{
     }
     public function commentDisplay($id_article){
         $sql = 'SELECT c.commentaire, u.login, d.nom, c.date FROM `commentaires` AS c 
-        INNER JOIN `utilisateurs` AS u ON u.id = c.id_utilisateur 
-        INNER JOIN `droits` AS d ON u.id_droits = d.id 
-        INNER JOIN `articles` AS a ON a.id = :id_article';
+        LEFT OUTER JOIN `utilisateurs` AS u ON c.id_utilisateur = u.id
+        LEFT OUTER JOIN `droits` AS d ON u.id_droits = d.id
+        LEFT OUTER JOIN `articles` AS a ON a.id = :id_article WHERE a.id = c.id_article';
 
         $result = $this->pdo->prepare($sql);
         $result->bindValue(':id_article',$id_article, \PDO::PARAM_INT);
@@ -41,6 +41,7 @@ class Commentaire extends Model{
         return $tab;
             
     }
+    
 
 
 }

@@ -1,11 +1,11 @@
 <?php
 
 ob_start();
-
 // LIBRARIES
 $database = '../libraries/database.php';
 $utils = "../libraries/utils.php";
 $Http = '../libraries/Http.php';
+$Article = '../libraries/Models/Article.php';
 require("../libraries/controller/Admin.php");
 require("../libraries/models/Admin.php");
 
@@ -15,19 +15,8 @@ $pageCss = "../css/admin.css";
 $Pagenom = "Connexion";
 $footer = "../css/footer.css";
 
-// PATHS
-$index = "../index.php";
-$inscription = "inscription.php";
-$connexion = "connexion.php";
-$profil = "profil.php";
-$admin = "admin.php";
-$article = "article.php";
-$creerarticle = "creer-article.php";
-$indexoff = "../index.php?off=1";
-
-//HEADER
-require('../require/html_/header.php');
-
+//FORM 
+$articlesForm = 'articles.php';
 
 // PATHS
 $index = "../index.php";
@@ -41,23 +30,26 @@ $indexoff = "../index.php?off=1";
 
 //HEADER
 require('../require/html_/header.php');
-
-//CSS
-$headerCss = "../css/header.css";
-$pageCss = "../css/admin.css";
-$Pagenom = "Connexion";
-$footer = "../css/footer.css";
-
 ?>
 <main>
     <form action="" method="POST">
-<<<<<<< HEAD
         <label for="newCategorie">Nouvelle categorie</label>
-=======
-        <label for="newCategorie">Nouvelle catégorie</label>
->>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
         <input name="newCategorie" id="idnewCategorie" type="text" placeholder="Ma categorie...">
         
+        <label for='categoryColor'>Couleur de la categorie</label>
+        <select name="categoryColor">
+            <option value='#ff0022'>Rouge</option>
+            <option value='#ff00d4'>Violet</option>
+            <option value='#3b00ff'>Bleu FoncÃ©</option>
+            <option value='#00e5ff'>Bleu Clair</option>
+            <option value='#00ff37'>Vert Clair</option>
+            <option value='#5ea52b'>Vert FoncÃ©</option>
+            <option value='#e9ff00'>Jaune</option>
+            <option value='#ffd400'>Orange</option>
+            <option value='#211a1a'>Marron</option>
+
+        </select>
+
         <input type="submit" id="submitCategorie" name="Submit_newCategorie">
         </form>
         <?php
@@ -67,17 +59,10 @@ $footer = "../css/footer.css";
             $newCategorie->createNewCategorie($_POST['newCategorie']);
         }
         ?>
-<<<<<<< HEAD
         <form action='' method='GET'> <!-- je differencie le GET et le POST selon si j'vais avoir besoin de donnees tel que l'id dans l'url + c pratik pour check -->
             <label for="SelectCategory">Modifier une categorie</label>
             <select name="selectCategory">
                 <option value="">--Choisir--</option> <!-- jmet une option vide pcq sinon il compte pas l'option pre-selectionne ce fdp --> 
-=======
-        <form action='' method='GET'> <!-- je différencie le GET et le POST selon si j'vais avoir besoin de données tel que l'id dans l'url + c pratik pour check -->
-            <label for="SelectCategory">Modifier une catégorie</label>
-            <select name="selectCategory">
-                <option value="">--Choisir--</option> <!-- jmet une option vide pcq sinon il compte pas l'option pré-selectionné ce fdp --> 
->>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
 
                 <?php
                 $modelArticle = new \Models\Admin();
@@ -115,11 +100,7 @@ $footer = "../css/footer.css";
         if(isset($_GET['DeleteCategorySubmit'])){
             $nom = $_GET['selectCategory'];
             $nom = str_replace('_', ' ', $nom);
-<<<<<<< HEAD
             echo "etes vous sur de vouloir supprimer la categorie ".$nom."?";
-=======
-            echo "etes vous sur de vouloir supprimer la catégorie ".$nom."?";
->>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
             echo "  <form action='' method=POST>
                     <input type='submit' name='yes' value='Oui'>
                     <input type='submit' name='cancel' value='Annuler'>
@@ -144,60 +125,17 @@ $footer = "../css/footer.css";
                 <th class="tableau_admin">EMAIL</th>
                 <th class="tableau_admin">DROITS</th>
             </tr>
-            <?php
-            $users = $modelArticle->findAllUsers();
-                foreach ($users as $key => $value){
-    
-                    echo "<tr>";       
-                    echo    "<td class='tableau_admin'>".$value[0]."</td>"; // id
-                    echo    "<td class='tableau_admin'>".$value[1]."</td>";
-                    echo    "<td class='tableau_admin'>".$value[2]."</td>";
-                    echo    "<td class='tableau_admin'>".$value[3]."</td>";
+<?php
 
-                    echo    "<form method='GET' action=''>
-                                <td>
-                                    <input type='submit' id='Modifier' value='modifier'>
-                                    <input type='hidden' name='utilisateur' id='hiddenId' value='".$value[0]."'>
-                                </td>
-                                <td>
-                                    <input type='submit' name='deleteUser' value='supprimer'>
-                                    <input type='hidden' name='idTracker' id='suppr' value='".$value[0]."'>
-                                </td>
-
-
-                                </form>
-                                </tr>";
-                }
-              ?>
+$adminController = new \Controller\Admin();
+$adminController->userDisplay(); // Sah quel plaisir d'avoir un controller et pas 300 lignes de code 
+?>
         </table>
         <?php
         if(isset($_GET['utilisateur'])){ // sans isset = undefined 'modifier' + j'ai pas mis de name a l'input id='Modifier' pour avoir un url plus clair
-            $modelAdmin = new \Models\Admin();
-            $id = $_GET['utilisateur'];
-            echo $modelAdmin->userModify($id);
-        
-            if(isset($_POST['adminModifyUser'])){
-<<<<<<< HEAD
-                $modelUpdate = new \Models\Admin(); // jpourrais creer qu'un seul objet ca serait + opti
-=======
-                $modelUpdate = new \Models\Admin(); // jpourrais créer qu'un seul objet ça serait + opti
->>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
-                switch($_POST['id_droitsUpdate']){
-                    case $_POST['id_droitsUpdate'] == "Utilisateur":
-                    $compareRights = "Utilisateur";
-                    $id_droitsUpdate = 1;
-                    case $_POST['id_droitsUpdate'] == "Moderateur":
-                    $compareRights = "Moderateur";
-                    $id_droitsUpdate = 42;
-                    break;
-                   case $_POST['id_droitsUpdate'] == "Administrateur":
-                   $id_droitsUpdate = 1337; 
-                   break;
-                }
-                $modelUpdate->adminUpdate($_POST['loginUpdate'], $_POST['emailUpdate'], $id_droitsUpdate, $id);
-                $modelHttp = new \Http();
-                $modelHttp->redirect('admin.php');
-            }
+            // CONTROLLER
+            $adminController = new \Controller\Admin();
+            $adminController->userModifyDisplay();  
     }
     if(isset($_GET['deleteUser'])){
         $id = $_GET['idTracker'];
@@ -211,7 +149,6 @@ $footer = "../css/footer.css";
                     $modelDelete->deleteUser($id);
                     $modelHttp = new \Http();
                     $modelHttp->redirect('admin.php');
-            
                 }
                 elseif(isset($_POST['cancel'])){
                     $modelHttp = new \Http();
@@ -219,7 +156,6 @@ $footer = "../css/footer.css";
                 }
     }
         ?>
-
         <table class="">
             <tr>
                 <th class="tableau_admin">ID</th>
@@ -229,38 +165,10 @@ $footer = "../css/footer.css";
                 <th class="tableau_admin">CATEGORIE</th>
                 <th class="tableau_admin">ID CATEGORIE</th>
                 <th class="tableau_admin">DATE</th>
-
-
             </tr>
             <?php
-
-                $articles = $modelArticle->findAllArticles();
-            //     $modelCategory = new \Models\Admin();<select name='selectCategoryArticle'>$categoryList</select>
-            //    echo $categoryList = $modelCategory->modifyCategorie();
-                foreach ($articles as $value){      
-                    echo "<tr>";
-                   // id // titre // article //id_utilisateur // id categorie // date 
-                   
-                        echo "<td class='tableau_admin'>$value[0]</td>";
-                        echo "<td class='tableau_admin'>$value[1]</td>";
-                        echo "<td class='tableau_admin'>$value[2]</td>";
-                        echo "<td class='tableau_admin'>$value[3]</td>";
-                        echo "<td class='tableau_admin'>$value[4]</td>";
-                        echo "<td class='tableau_admin'>$value[5]</td>";
-                        echo "<td class='tableau_admin'>$value[6]</td>";
-
-                    echo    "<form method='GET' action=''>
-                                <td>
-                                    <input type='submit' id='Modifier' value='modifier'>
-                                    <input type='hidden' name='articleName' id='hiddenId' value='".$value[0]."'> 
-                                </td>
-                                <td>
-                                    <input type='submit' name='deleteArticle' value='supprimer'>
-                                    <input type='hidden' name='articleIdTracker' id='suppr' value='".$value[0]."'>
-                                </td>
-                                </form>
-                                </tr>"; // value[0] renvoie l'id
-                } 
+               // CONTROLLER
+               $adminController->articlesDisplay();
                 //ok
                 if(isset($_GET['articleName'])){ // sans isset = undefined 'modifier' + j'ai pas mis de name a l'input id='Modifier' pour avoir un url plus clair
                     $modelAdmin = new \Models\Admin();
@@ -291,7 +199,6 @@ $footer = "../css/footer.css";
                             $modelHttp->redirect('admin.php');
                         }
             }
-            // ok           
             ?>
         </table>
 </main> 

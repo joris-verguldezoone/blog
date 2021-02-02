@@ -13,16 +13,27 @@ class Admin extends Model {
         $result = $this->pdo->prepare($sql);
         $result->bindvalue(':nom', $nomCategorie, \PDO::PARAM_STR);
         $result->execute();
+        $fetch = $result->fetch(\PDO::FETCH_ASSOC);
 
-        return $result;
+        return $fetch;
+    }
+    public function ifExistColor($couleurCategorie){
+        $sql = "SELECT couleur FROM categories WHERE couleur = :couleurCategorie";
+        $result = $this->pdo->prepare($sql);
+        $result->bindvalue(':couleurCategorie', $couleurCategorie, \PDO::PARAM_STR);
+        $result->execute();
+        $fetch = $result->fetch(\PDO::FETCH_ASSOC);
+
+        return $fetch;
     }
 
+    public function insertCategorie($newCategorie, $couleurCategorie){
 
-    public function insertCategorie($newCategorie){
-
-            $sql = "INSERT INTO categories (nom) VALUES (:nom)";
+            $sql = "INSERT INTO categories (nom,couleur) VALUES (:nom,:couleur)";
             $result = $this->pdo->prepare($sql);
             $result->bindvalue(':nom', $newCategorie,\PDO::PARAM_STR);
+            $result->bindvalue(':couleur', $couleurCategorie,\PDO::PARAM_STR);
+
             $result->execute();
             
             return $result;
@@ -191,7 +202,6 @@ class Admin extends Model {
                 public function adminArticleUpdate($titre, $article, $id_utilisateur, $id_categorie, $date,$id){ // :)
 
                     $sql = "UPDATE articles SET titre =:titre , article = :article, id_utilisateur =:id_utilisateur, id_categorie = :id_categorie, date=:date WHERE id=:id"; // c.nom et a.id_categorie = c.id
-                    var_dump($sql);
                     $result = $this->pdo->prepare($sql);
                     $result->bindvalue(':titre', $titre, \PDO::PARAM_STR);
                     $result->bindvalue(':article', $article, \PDO::PARAM_STR);
@@ -208,6 +218,6 @@ class Admin extends Model {
                     $result->bindvalue(':id', $id, \PDO::PARAM_INT);
                     $result->execute();
                 }
-
+                
 }
 

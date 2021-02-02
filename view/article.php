@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 //LIBRARIES
 $Http = "../libraries/Http.php";
 $database = '../libraries/database.php';
@@ -9,19 +8,15 @@ $Admin = '../libraries/models/Admin.php';
 require_once('../libraries/models/Article.php');
 require_once('../libraries/controller/Commentaire.php');
 
-=======
-session_start();
->>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
 //CSS
 $headerCss = "../css/header.css";
 $pageCss = "../css/article.css";
 $Pagenom = "Article";
 $footer = "../css/footer.css";
 
-<<<<<<< HEAD
-=======
+//FORM 
+$articlesForm = 'articles.php';
 
->>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
 //PATHS
 $inscription = "inscription.php";
 $connexion = "connexion.php";
@@ -34,28 +29,29 @@ $indexoff = "../index.php?off=1";
 //HEADER
 require('../require/html_/header.php');
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
 ?>
 
 <main>
 
-<<<<<<< HEAD
 <?php 
+
 $articleModel = new \Models\Article();
 $article = $articleModel->findOneArticle($_GET['articleSelected']); // on prend le name de l'input du formulaire envoyé ici
-    echo $article[0][1]."<br />";
+    
+    echo "<div style='background-color:".$article[0][5].";'>".$article[0][1]."<br />";
     echo $article[0][2]."<br />";
     echo $article[0][3]."<br />";
     echo $article[0][4]."<br />";
-    echo $article[0][5]."<br />";
+    echo $article[0][6]."</div><br />";
 
-    $commentModel = new \Controller\Commentaire();
-    $commentModel->commentDisplay($_GET['articleSelected']);
-    
+    $count = $articleModel->commentaireVerify($_GET['articleSelected']);
+    var_dump($count);
+    if($count){
+        $commentController = new \Controller\Commentaire();
+        $commentController->commentDisplay($_GET['articleSelected']);
+    }
 ?>
     <form action='' method='POST'>
     
@@ -76,8 +72,6 @@ if(isset($_POST['submitComment'])){
 }
      ?>
 
-=======
->>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
 </main>
 
 <?php
