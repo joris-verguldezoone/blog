@@ -26,6 +26,7 @@ $reservation = "reservation-form.php";
 $index = "../index.php";
 $indexoff = "../index.php?off=1";
 
+
 //HEADER
 require('../require/html_/header.php');
 

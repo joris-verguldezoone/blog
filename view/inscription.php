@@ -1,16 +1,10 @@
 <?php
+
 //LIBRARIES
 $Http = '../libraries/Http.php';
 $database = '../libraries/database.php';
 $utils = '../libraries/utils.php';
 require("../libraries/models/Admin.php");
-
-
-//CSS
-$headerCss = "../css/header.css";
-$pageCss = "../css/inscription.css";
-$Pagenom = "Inscription";
-$footer = "../css/footer.css";
 
 //FORM 
 $articlesForm = 'articles.php';
@@ -24,6 +18,12 @@ $admin = "admin.php";
 $article = "article.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
+
+//CSS
+$footer = "../css/footer.css";
+$headerCss = "../css/header.css";
+$pageCss = "../css/Inscription.css";
+$Pagenom = "Inscription";
 
 //HEADER
 require('../require/html_/header.php');

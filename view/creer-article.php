@@ -34,41 +34,20 @@ $indexoff = "../index.php?off=1";
 $footer = "../css/footer.css";
 $headerCss = "../css/header.css";
 $pageCss = "../css/connexion.css";
-$Pagenom = "Connexion";
+$Pagenom = "Creer-article";
 
 //HEADER
 require('../require/html_/header.php');
 
-//PATHS
-$index = "../index.php";
-$inscription = "inscription.php";
-$connexion = "connexion.php";
-$profil = "profil.php";
-$admin = "admin.php";
-$article = "article.php";
-$creerarticle = "creer-article.php";
-$indexoff = "../index.php?off=1";
 
 
-//PATHS
-$index = "../index.php";
-$inscription = "inscription.php";
-$connexion = "connexion.php";
-$profil = "profil.php";
-$admin = "admin.php";
-$article = "article.php";
-$creerarticle = "creer-article.php";
-$indexoff = "../index.php?off=1";
 
-<<<<<<< HEAD
-//CSS
-$footer = "../css/footer.css";
-$headerCss = "../css/header.css";
-$pageCss = "../css/connexion.css";
-$Pagenom = "Connexion";
 
-=======
->>>>>>> d691bca02c926f82c09777843ab72269ee2382e3
+
+
+
+
+
 //HEADER
 require('../require/html_/header.php');
 

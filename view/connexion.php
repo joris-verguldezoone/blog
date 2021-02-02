@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 //LIBRARIES
 $Http = "../libraries/Http.php";
 $database = '../libraries/database.php';
@@ -7,6 +7,7 @@ $utils = "../libraries/utils.php";
 require('../libraries/controller/Connexion.php');
 require('../libraries/models/Connexion.php');
 require("../libraries/models/Admin.php");
+
 
 //CSS
 $footer = "../css/footer.css";
