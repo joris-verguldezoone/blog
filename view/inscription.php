@@ -5,14 +5,7 @@ $Http = '../libraries/Http.php';
 $database = '../libraries/database.php';
 $utils = '../libraries/utils.php';
 
-//CSS
-$headerCss = "../css/header.css";
-$pageCss = "../css/inscription.css";
-$Pagenom = "Inscription";
-$footer = "../css/footer.css";
-
-
-//PATHS
+// PATHS
 $index = "../index.php";
 $inscription = "inscription.php";
 $connexion = "connexion.php";
@@ -21,6 +14,12 @@ $admin = "admin.php";
 $article = "article.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
+
+//CSS
+$headerCss = "../css/header.css";
+$pageCss = "../css/inscription.css";
+$Pagenom = "Inscription";
+$footer = "../css/footer.css";
 
 //HEADER
 require('../require/html_/header.php');

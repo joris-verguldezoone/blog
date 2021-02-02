@@ -6,18 +6,7 @@ $utils = "../libraries/utils.php";
 require_once('../libraries/controller/Article.php');
 require_once('../libraries/models/Article.php');
 
-//PATHS
-$index = "../index.php";
-$inscription = "inscription.php";
-$connexion = "connexion.php";
-$profil = "profil.php";
-$admin = "admin.php";
-$article = "article.php";
-$creerarticle = "creer-article.php";
-$indexoff = "../index.php?off=1";
-
-
-//PATHS
+// PATHS
 $index = "../index.php";
 $inscription = "inscription.php";
 $connexion = "connexion.php";
@@ -28,10 +17,10 @@ $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
 
 //CSS
-$footer = "../css/footer.css";
 $headerCss = "../css/header.css";
-$pageCss = "../css/connexion.css";
-$Pagenom = "Connexion";
+$pageCss = "../css/creer-article.css";
+$Pagenom = "Création d'article";
+$footer = "../css/footer.css";
 
 //HEADER
 require('../require/html_/header.php');

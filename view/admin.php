@@ -9,12 +9,6 @@ $Article = '../libraries/Models/Article.php';
 require("../libraries/controller/Admin.php");
 require("../libraries/models/Admin.php");
 
-//CSS
-$headerCss = "../css/header.css";
-$pageCss = "../css/admin.css";
-$Pagenom = "Connexion";
-$footer = "../css/footer.css";
-
 // PATHS
 $index = "../index.php";
 $inscription = "inscription.php";
@@ -24,6 +18,12 @@ $admin = "admin.php";
 $article = "article.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
+
+//CSS
+$headerCss = "../css/header.css";
+$pageCss = "../css/admin.css";
+$Pagenom = "Admin";
+$footer = "../css/footer.css";
 
 //HEADER
 require('../require/html_/header.php');

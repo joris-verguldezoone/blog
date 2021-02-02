@@ -7,8 +7,7 @@ require('../libraries/controller/Profil.php');
 require('../libraries/models/Profil.php');
 require_once($utils);
 
-
-//PATHS
+// PATHS
 $index = "../index.php";
 $inscription = "inscription.php";
 $connexion = "connexion.php";
@@ -23,6 +22,7 @@ $headerCss = "../css/header.css";
 $pageCss = "../css/profil.css";
 $Pagenom = "Profil";
 $footer = "../css/footer.css";
+
 //HEADER
 require('../require/html_/header.php');
 

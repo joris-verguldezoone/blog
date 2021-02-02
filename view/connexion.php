@@ -7,13 +7,7 @@ $utils = "../libraries/utils.php";
 require('../libraries/controller/Connexion.php');
 require('../libraries/models/Connexion.php');
 
-//CSS
-$footer = "../css/footer.css";
-$headerCss = "../css/header.css";
-$pageCss = "../css/connexion.css";
-$Pagenom = "Connexion";
-
-//PATHS
+// PATHS
 $index = "../index.php";
 $inscription = "inscription.php";
 $connexion = "connexion.php";
@@ -22,6 +16,12 @@ $admin = "admin.php";
 $article = "article.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
+
+//CSS
+$footer = "../css/footer.css";
+$headerCss = "../css/header.css";
+$pageCss = "../css/connexion.css";
+$Pagenom = "Connexion";
 
 //HEADER
 require('../require/html_/header.php');
