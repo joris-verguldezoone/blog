@@ -1,11 +1,22 @@
 <?php
-session_start();
+
 //LIBRARIES
 $Http = "../libraries/Http.php";
 $database = '../libraries/database.php';
 $utils = "../libraries/utils.php";
 require('../libraries/controller/Connexion.php');
 require('../libraries/models/Connexion.php');
+require("../libraries/models/Admin.php");
+
+
+//CSS
+$footer = "../css/footer.css";
+$headerCss = "../css/header.css";
+$pageCss = "../css/connexion.css";
+$Pagenom = "Connexion";
+
+//FORM 
+$articlesForm = 'articles.php';
 
 // PATHS
 $index = "../index.php";
@@ -13,15 +24,9 @@ $inscription = "inscription.php";
 $connexion = "connexion.php";
 $profil = "profil.php";
 $admin = "admin.php";
-$article = "article.php";
+$article = "articles.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
-
-//CSS
-$footer = "../css/footer.css";
-$headerCss = "../css/header.css";
-$pageCss = "../css/connexion.css";
-$Pagenom = "Connexion";
 
 //HEADER
 require('../require/html_/header.php');

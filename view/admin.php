@@ -9,21 +9,27 @@ $Article = '../libraries/Models/Article.php';
 require("../libraries/controller/Admin.php");
 require("../libraries/models/Admin.php");
 
-// PATHS
-$index = "../index.php";
-$inscription = "inscription.php";
-$connexion = "connexion.php";
-$profil = "profil.php";
-$admin = "admin.php";
-$article = "article.php";
-$creerarticle = "creer-article.php";
-$indexoff = "../index.php?off=1";
+$Pagenom = "Admin";
+
 
 //CSS
 $headerCss = "../css/header.css";
 $pageCss = "../css/admin.css";
 $Pagenom = "Admin";
 $footer = "../css/footer.css";
+
+//FORM 
+$articlesForm = 'articles.php';
+
+// PATHS
+$index = "../index.php";
+$inscription = "inscription.php";
+$connexion = "connexion.php";
+$profil = "profil.php";
+$admin = "admin.php";
+$article = "articles.php";
+$creerarticle = "creer-article.php";
+$indexoff = "../index.php?off=1";
 
 //HEADER
 require('../require/html_/header.php');
@@ -33,6 +39,20 @@ require('../require/html_/header.php');
         <label for="newCategorie">Nouvelle categorie</label>
         <input name="newCategorie" id="idnewCategorie" type="text" placeholder="Ma categorie...">
         
+        <label for='categoryColor'>Couleur de la categorie</label>
+        <select name="categoryColor">
+            <option value='#ff0022'>Rouge</option>
+            <option value='#ff00d4'>Violet</option>
+            <option value='#3b00ff'>Bleu Fonc�</option>
+            <option value='#00e5ff'>Bleu Clair</option>
+            <option value='#00ff37'>Vert Clair</option>
+            <option value='#5ea52b'>Vert Fonc�</option>
+            <option value='#e9ff00'>Jaune</option>
+            <option value='#ffd400'>Orange</option>
+            <option value='#211a1a'>Marron</option>
+
+        </select>
+
         <input type="submit" id="submitCategorie" name="Submit_newCategorie">
         </form>
         <?php

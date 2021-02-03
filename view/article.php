@@ -8,40 +8,43 @@ $Admin = '../libraries/models/Admin.php';
 require_once('../libraries/models/Article.php');
 require_once('../libraries/controller/Commentaire.php');
 
-// PATHS
-$index = "../index.php";
-$inscription = "inscription.php";
-$connexion = "connexion.php";
-$profil = "profil.php";
-$admin = "admin.php";
-$article = "article.php";
-$creerarticle = "creer-article.php";
-$indexoff = "../index.php?off=1";
-
 //CSS
 $headerCss = "../css/header.css";
 $pageCss = "../css/article.css";
 $Pagenom = "Article";
 $footer = "../css/footer.css";
 
+//FORM 
+$articlesForm = 'articles.php';
+
+// PATHS
+$index = "../index.php";
+$inscription = "inscription.php";
+$connexion = "connexion.php";
+$profil = "profil.php";
+$admin = "admin.php";
+$article = "articles.php";
+$creerarticle = "creer-article.php";
+$indexoff = "../index.php?off=1";
+
 //HEADER
 require('../require/html_/header.php');
-
 ?>
-
 <main>
 
 <?php 
+
 $articleModel = new \Models\Article();
 $article = $articleModel->findOneArticle($_GET['articleSelected']); // on prend le name de l'input du formulaire envoyé ici
-    echo $article[0][1]."<br />";
+    
+    echo "<div style='background-color:".$article[0][5].";'>".$article[0][1]."<br />";
     echo $article[0][2]."<br />";
     echo $article[0][3]."<br />";
     echo $article[0][4]."<br />";
-    echo $article[0][5]."<br />";
+    echo $article[0][6]."</div><br />";
 
     $count = $articleModel->commentaireVerify($_GET['articleSelected']);
-    var_dump($count);
+    // var_dump($count);
     if($count){
         $commentController = new \Controller\Commentaire();
         $commentController->commentDisplay($_GET['articleSelected']);

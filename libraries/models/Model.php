@@ -102,7 +102,7 @@ abstract class Model // <3
     }
     //Cindy 
     public function findAllandAffArticles(){ // display all articles
-        $sql = "SELECT a.id, a.titre, a.article, u.login, c.nom, a.date FROM articles AS a LEFT OUTER JOIN utilisateurs AS u 
+        $sql = "SELECT a.id, a.titre, a.article, u.login, c.nom, c.couleur, a.date FROM articles AS a LEFT OUTER JOIN utilisateurs AS u 
         ON u.id = a.id_utilisateur LEFT OUTER JOIN categories AS c ON c.id = a.id_categorie ORDER BY date";
         $result = $this->pdo->prepare($sql);
         $result->execute();
@@ -115,17 +115,18 @@ abstract class Model // <3
             $tab[$i][] = $fetch['article'];
             $tab[$i][] = $fetch['login'];
             $tab[$i][] = $fetch['nom'];
+            $tab[$i][] = $fetch['couleur'];
             $tab[$i][] = $fetch['date'];
-            
+
             $i++;
-            $this->description = $fetch['article'];
+            // $this->description = $fetch['article'];
         }
 
         
         return $tab;
     }
     public function findOneArticle($id){ // display all articles
-        $sql = "SELECT a.id, a.titre, a.article, u.login, c.nom, a.date FROM articles AS a LEFT OUTER JOIN utilisateurs AS u 
+        $sql = "SELECT a.id, a.titre, a.article, u.login, c.nom, couleur, a.date FROM articles AS a LEFT OUTER JOIN utilisateurs AS u 
         ON u.id = a.id_utilisateur LEFT OUTER JOIN categories AS c ON c.id = a.id_categorie WHERE a.id = '$id'";
         $result = $this->pdo->prepare($sql);
         $result->bindValue(':id',$id,\PDO::PARAM_INT);
@@ -139,10 +140,11 @@ abstract class Model // <3
             $tab[$i][] = $fetch['article'];
             $tab[$i][] = $fetch['login'];
             $tab[$i][] = $fetch['nom'];
+            $tab[$i][] = $fetch['couleur'];
             $tab[$i][] = $fetch['date'];
             
             $i++;
-            $this->description = $fetch['article'];
+            // $this->description = $fetch['article'];
         }
         return $tab;
     }
@@ -164,4 +166,29 @@ abstract class Model // <3
         return $fetch;
     }
 
+    public function findArticleByCategories($nom){
+        $sql = "SELECT a.id, a.titre, a.article, u.login, c.nom, c.couleur ,a.date FROM articles AS a LEFT OUTER JOIN utilisateurs AS u 
+        ON u.id = a.id_utilisateur LEFT OUTER JOIN categories AS c ON c.id = a.id_categorie WHERE c.nom = :nom";
+
+        $result = $this->pdo->prepare($sql);
+        $result->bindvalue(":nom",$nom,\PDO::PARAM_STR);
+        $result->execute();
+        $i = 0;
+        $tab = array();
+
+        while($fetch = $result->fetch(\PDO::FETCH_ASSOC)){
+            $tab[$i][] = $fetch['id']; // attribut qui va etre utilisé en GET
+            $tab[$i][] = $fetch['titre'];
+            $tab[$i][] = $fetch['article'];
+            $tab[$i][] = $fetch['login'];
+            $tab[$i][] = $fetch['nom'];
+            $tab[$i][] = $fetch['couleur'];
+            $tab[$i][] = $fetch['date'];
+
+            
+            $i++;
+            // $this->description = $fetch['article']; nul/20
+        }
+        return $tab;
+    }
 }

@@ -1,9 +1,13 @@
 <?php
-session_start();
+
 //LIBRARIES
 $Http = '../libraries/Http.php';
 $database = '../libraries/database.php';
 $utils = '../libraries/utils.php';
+require("../libraries/models/Admin.php");
+
+//FORM 
+$articlesForm = 'articles.php';
 
 // PATHS
 $index = "../index.php";
@@ -11,15 +15,15 @@ $inscription = "inscription.php";
 $connexion = "connexion.php";
 $profil = "profil.php";
 $admin = "admin.php";
-$article = "article.php";
+$article = "articles.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
 
 //CSS
-$headerCss = "../css/header.css";
-$pageCss = "../css/inscription.css";
-$Pagenom = "Inscription";
 $footer = "../css/footer.css";
+$headerCss = "../css/header.css";
+$pageCss = "../css/Inscription.css";
+$Pagenom = "Inscription";
 
 //HEADER
 require('../require/html_/header.php');
@@ -50,7 +54,7 @@ require_once('../libraries/models/Inscription.php');
                 <span class="focus-bg"></span>
             </label>
             <label for="email" name="email" class="inp">
-                <input type="text" id="inscriptionEmail" name="email" placeholder="&nbsp;">
+                <input type="email" id="inscriptionEmail" name="email" placeholder="&nbsp;">
                 <span class="label">Email</span>
                 <span class="focus-bg"></span>
             </label>

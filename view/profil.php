@@ -6,6 +6,15 @@ $utils = '../libraries/utils.php';
 require('../libraries/controller/Profil.php');
 require('../libraries/models/Profil.php');
 require_once($utils);
+require("../libraries/models/Admin.php");
+
+//CSS
+$footer = "../css/footer.css";
+$headerCss = "../css/header.css";
+$pageCss = "../css/profil.css";
+$Pagenom = "Profil";
+//FORM 
+$articlesForm = 'articles.php';
 
 // PATHS
 $index = "../index.php";
@@ -13,15 +22,10 @@ $inscription = "inscription.php";
 $connexion = "connexion.php";
 $profil = "profil.php";
 $admin = "admin.php";
-$article = "article.php";
+$article = "articles.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
 
-//CSS
-$headerCss = "../css/header.css";
-$pageCss = "../css/profil.css";
-$Pagenom = "Profil";
-$footer = "../css/footer.css";
 
 //HEADER
 require('../require/html_/header.php');
