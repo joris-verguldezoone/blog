@@ -34,7 +34,19 @@ $indexoff = "../index.php?off=1";
 $footer = "../css/footer.css";
 $headerCss = "../css/header.css";
 $pageCss = "../css/connexion.css";
-$Pagenom = "Connexion";
+$Pagenom = "Creer-article";
+
+//HEADER
+require('../require/html_/header.php');
+
+
+
+
+
+
+
+
+
 
 //HEADER
 require('../require/html_/header.php');

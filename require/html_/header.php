@@ -79,7 +79,7 @@ if (isset($_SESSION['connected'])) {
         </div>";
 }
 
-if (isset($_SESSION['modo'])) {
+if (isset($_SESSION['utilisateur']['id_droits']) == (42 || 1337)) {
     echo "
         <div class= 'margin'>
             <a class='a_header' href='$index'><img src='images/' id='logo' alt ='logo'></a>

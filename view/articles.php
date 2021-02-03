@@ -9,6 +9,15 @@ require("../libraries/models/Admin.php");
 require_once('../libraries/Controller/Article.php');
 require_once('../libraries/Models/Article.php');
 
+// PATHS
+$index = "../index.php";
+$inscription = "inscription.php";
+$connexion = "connexion.php";
+$profil = "profil.php";
+$admin = "admin.php";
+$article = "article.php";
+$creerarticle = "creer-article.php";
+$indexoff = "../index.php?off=1";
 //CSS
 $headerCss = "../css/header.css";
 $pageCss = "../css/article.css";
@@ -18,22 +27,10 @@ $footer = "../css/footer.css";
 //FORM 
 $articlesForm = 'articles.php';
 
-//PATHS
-$inscription = "inscription.php";
-$connexion = "connexion.php";
-$profil = "profil.php";
-$planning = "planning.php";
-$reservation = "reservation-form.php";
-$index = "../index.php";
-$indexoff = "../index.php?off=1";
-
 //HEADER
 require('../require/html_/header.php');
-
-
-
 ?>
-        <main>
+<main>
 <?php
 if(isset($_GET['submitSearchCategory'])){
     $articleController = new \Controller\Article();
@@ -48,8 +45,6 @@ if(!isset($_GET['selectSearchCategory'])){
         $page = $_GET['page'];
     }
 
-    
-
             $pageArticles = '';
 
             // On limite déjà nos articles
@@ -63,11 +58,11 @@ if(!isset($_GET['selectSearchCategory'])){
             while (isset($Articles)) {
                 $id = $Articles[$i][0];
                 $descriptionLimit = $modelArticleDisplay->descriptionLimit($Articles[$i][2]);
-                echo "<br /><form method='GET' action='article.php'><input type='hidden' name='articleSelected' id='hiddenId' value='".$id."'><button type='submit' style='background-color:".$Articles[$i][5].";'>".$Articles[$i][1]."<br />"
+                echo "<br /><div id='form'><form method='GET' action='article.php'><input type='hidden' name='articleSelected' id='hiddenId' value='".$id."'><button type='submit' id='buttonArticles' style='background:".$Articles[$i][5].";'><h3><u>".$Articles[$i][1]."</h3></u><br />"
                 .$descriptionLimit."<br />"
                 .$Articles[$i][3]."<br />"
                 .$Articles[$i][4]."<br />"
-                .$Articles[$i][6]."</button><br /></form>";
+                .$Articles[$i][6]."</button><br /></form></div>";
                 
                     break; // ce break permet de garde la structure de 5 par 5
                     
@@ -98,23 +93,12 @@ if(!isset($_GET['selectSearchCategory'])){
                 $page_item .= '</div>';
             }
 
-            echo "<form method='get' action='articles.php'>";
+            echo "<form method='get' action='articles.php' class='pagination'>";
 
             echo $page_item;
 
             echo "</form>";
-            // $e = 0; 
-            // while ($e < 20) {
-            //     $limited = $modelArticleDisplay->descriptionLimit($Articles[$e][1]);
-            //     var_dump($limited);
-            //     echo 
-            //     "<br />".$Articles[$e][0]."<br />".
-            //      $limited."<br />"
-            //      .$Articles[$e][2]."<br />"
-            //      .$Articles[$e][3]."<br />"
-            //      .$Articles[$e][4]."<br />";
-            //     $e++;
-            // }
+     
 }
         ?>
 

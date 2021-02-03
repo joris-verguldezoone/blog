@@ -1,4 +1,56 @@
 main{
-    max-width:1280px;
     min-height:60%;
+    margin-top: 2%;
 }
+.a_header{
+    color: white;
+}
+
+.a_footer{
+    color: white;
+}
+
+.signature{
+    color: white;
+}
+
+body{
+    background-image: url("../images/wp5498323.png");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#buttonArticles{
+    padding: 1.5%;
+}
+
+div#form{
+    width:45%;
+    margin-left: 28%;
+}
+
+button{
+    border-radius: 5px;
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+}
+
+.pagination_btn{
+    margin-top: 0.5%;
+    margin-right: 0.5em;
+    border-radius: 5px;
+    padding: 8px 16px;
+}
+
+.pagination_btn.current{
+    background-color: #0033cc;
+    color: white;
+    font-weight: bold;
+}
+

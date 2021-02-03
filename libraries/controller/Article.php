@@ -48,7 +48,7 @@ class Article{
 
         foreach($articles as $value)
         {
-            echo '<div style="background-color:'.$value[5].'">';
+            echo '<div style="background:'.$value[5].'">';
             echo $value[1].'<br />';
             echo $value[2].'<br />';
             echo $value[3].'<br />';

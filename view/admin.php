@@ -9,10 +9,13 @@ $Article = '../libraries/Models/Article.php';
 require("../libraries/controller/Admin.php");
 require("../libraries/models/Admin.php");
 
+$Pagenom = "Admin";
+
+
 //CSS
 $headerCss = "../css/header.css";
 $pageCss = "../css/admin.css";
-$Pagenom = "Connexion";
+$Pagenom = "Admin";
 $footer = "../css/footer.css";
 
 //FORM 
@@ -38,27 +41,29 @@ require('../require/html_/header.php');
         
         <label for='categoryColor'>Couleur de la categorie</label>
         <select name="categoryColor">
-            <option value='#ff0022'>Rouge</option>
-            <option value='#ff00d4'>Violet</option>
-            <option value='#3b00ff'>Bleu Foncé</option>
-            <option value='#00e5ff'>Bleu Clair</option>
-            <option value='#00ff37'>Vert Clair</option>
-            <option value='#5ea52b'>Vert Foncé</option>
-            <option value='#e9ff00'>Jaune</option>
-            <option value='#ffd400'>Orange</option>
-            <option value='#211a1a'>Marron</option>
+            <option value='linear-gradient(to bottom left, #cc0000 57%, #ffff99 100%)'>Rouge</option>
+            <option value='linear-gradient(to bottom left, #990099 57%, #ffff99 100%)'>Violet</option>
+            <option value='linear-gradient(to bottom left, #000099 57%, #ffff99 100%)'>Bleu Fonce</option>
+            <option value='linear-gradient(to bottom left, #33cccc 57%, #ffff99 100%)'>Bleu Clair</option>
+            <option value='linear-gradient(to bottom left, #00ff00 57%, #ffff99 100%)'>Vert Clair</option>
+            <option value='linear-gradient(to bottom left, #006600 57%, #ffff99 100%)'>Vert Fonce</option>
+            <option value='linear-gradient(to bottom left, #ffff00 57%, #ffff99 100%)'>Jaune</option>
+            <option value='linear-gradient(to bottom left, #ff9900 57%, #ffff99 100%)'>Orange</option>
+            <option value='linear-gradient(to bottom left, #663300 74%, #ffffcc 100%)'>Marron</option>
 
         </select>
 
         <input type="submit" id="submitCategorie" name="Submit_newCategorie">
         </form>
         <?php
+        var_dump($_SESSION);
         if(isset($_POST['Submit_newCategorie'])){
 
             $newCategorie = new \Controller\Admin();
             $newCategorie->createNewCategorie($_POST['newCategorie']);
         }
         ?>
+        
         <form action='' method='GET'> <!-- je differencie le GET et le POST selon si j'vais avoir besoin de donnees tel que l'id dans l'url + c pratik pour check -->
             <label for="SelectCategory">Modifier une categorie</label>
             <select name="selectCategory">
@@ -83,6 +88,8 @@ require('../require/html_/header.php');
 
             </form>
         <?php
+                echo "Afin d'acceder aux changements les utilisateurs doivent se déco reco";
+
         if(isset($_GET['ModifyCategorySubmit'])){
             $previousName = $_GET['selectCategory'];
             echo "<form action='' method='POST'>";

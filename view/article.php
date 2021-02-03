@@ -17,22 +17,20 @@ $footer = "../css/footer.css";
 //FORM 
 $articlesForm = 'articles.php';
 
-//PATHS
+// PATHS
+$index = "../index.php";
 $inscription = "inscription.php";
 $connexion = "connexion.php";
 $profil = "profil.php";
-$planning = "planning.php";
-$reservation = "reservation-form.php";
-$index = "../index.php";
+$admin = "admin.php";
+$article = "article.php";
+$creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
+
 
 //HEADER
 require('../require/html_/header.php');
-
-
-
 ?>
-
 <main>
 
 <?php 
