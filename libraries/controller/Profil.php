@@ -43,36 +43,36 @@ class Profil{
                         if (!$new_email || $email == $_SESSION['utilisateur']['email']) {
                             if ($_POST['password'] == $_POST['confirm_password']) {
 
-                                $cryptedpassword =  password_hash($password, PASSWORD_BCRYPT);
+                                $cryptedpassword = password_hash($password, PASSWORD_BCRYPT);
                                 $modelProfil->secure($login); 
                                 $modelProfil->secure($cryptedpassword);
-                                
+                                // jcrois faudra faire une requete pour actualiser les info pcq la il temenik
                                 
                                 $newSession = $modelProfil->update($login, $cryptedpassword, $email, $fetch_utilisateur['id']); // GG WP
                                 echo "changement(s) effectué(s)";
                                 $_SESSION['utilisateur'] = $newSession;
                             } 
                             else {
-                                $errorLog = "<p class='alert alert-danger' role='alert'>Confirmation du mot de passe incorrect</p>";
+                                $errorLog = "<p>Confirmation du mot de passe incorrect</p>";
                             }
                         }else{
                             $errorLog = "Cet email est déjà utilisé par un autre utilisateur";
                         }
                     } 
                     else {
-                        $errorLog = "<p class='alert alert-danger' role='alert'>identifiant déjà pris</p>";
+                        $errorLog = "<p'>identifiant déjà pris </p>";
                     }
                 } 
                 else {
-                    $errorLog = "<p class='alert alert-danger' role='alert'>mdp et identifiant limités a 30 caractères</p>";
+                    $errorLog = "<p>mdp et identifiant limités a 30 caractères</p>";
                 }
             } 
             else {
-                $errorLog = "<p class='alert alert-danger' role='alert'>2 caracteres minimum pour le login et 5 pour le mot de passe</p>";
+                $errorLog = "<p>2 caracteres minimum pour le login et 5 pour le mot de passe</p>";
             }
         }
          else {
-            $errorLog = "<p class='alert alert-danger' role='alert'>Veuillez entrer des caracteres dans les champs</p>";
+            $errorLog = "<p>Veuillez entrer des caracteres dans les champs</p>";
         }
     echo $errorLog;
     }

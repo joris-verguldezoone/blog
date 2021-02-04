@@ -7,46 +7,24 @@ require_once('../libraries/controller/Article.php');
 require_once('../libraries/models/Article.php');
 require("../libraries/models/Admin.php");
 
-//PATHS
-$index = "../index.php";
-$inscription = "inscription.php";
-$connexion = "connexion.php";
-$profil = "profil.php";
-$admin = "admin.php";
-$article = "article.php";
-$creerarticle = "creer-article.php";
-$indexoff = "../index.php?off=1";
-
 //FORM 
 $articlesForm = 'articles.php';
 
-//PATHS
+// PATHS
 $index = "../index.php";
 $inscription = "inscription.php";
 $connexion = "connexion.php";
 $profil = "profil.php";
 $admin = "admin.php";
-$article = "article.php";
+$articles = "articles.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
 
 //CSS
 $footer = "../css/footer.css";
 $headerCss = "../css/header.css";
-$pageCss = "../css/connexion.css";
-$Pagenom = "Creer-article";
-
-//HEADER
-require('../require/html_/header.php');
-
-
-
-
-
-
-
-
-
+$pageCss = "../css/creer-article.css";
+$Pagenom = "creer-article";
 
 //HEADER
 require('../require/html_/header.php');
@@ -55,15 +33,16 @@ require('../require/html_/header.php');
 
 
 <main>
-    <form action="" method="POST">
+    <form action="" method="POST" id="bloc_creation">
 
     <label name="titre">Titre</label>
     <input type="text" id="titreCreerArticle" name="titre">
 
     <label name="article">Article</label>
-    <textarea type="text" id="creerArticle" name="article" value="le contenue de mon article..."></textarea>
+    <textarea type="text" id="creerArticle" name="article" value="le contenue de mon article..." rows="10" cols="60" placeholder="2000 caractères maximum."></textarea>
 
-    <select name="categories">
+        <label id="categorie">Type</label>
+    <select name="categories" id="select_creation">
     
     <?php $modelArticle = new \Models\Article();
            $tableau = $modelArticle->findAllCategories();

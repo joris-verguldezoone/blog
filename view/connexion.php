@@ -9,6 +9,7 @@ require('../libraries/models/Connexion.php');
 require("../libraries/models/Admin.php");
 
 
+
 //CSS
 $footer = "../css/footer.css";
 $headerCss = "../css/header.css";
@@ -18,13 +19,13 @@ $Pagenom = "Connexion";
 //FORM 
 $articlesForm = 'articles.php';
 
-//PATHS
+// PATHS
 $index = "../index.php";
 $inscription = "inscription.php";
 $connexion = "connexion.php";
 $profil = "profil.php";
 $admin = "admin.php";
-$article = "article.php";
+$articles = "articles.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
 

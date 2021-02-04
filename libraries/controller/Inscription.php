@@ -36,8 +36,6 @@ class Inscription // s'appel User
 
                 if (($login_len <= 30) && ($password_len <= 30) && ($confirm_password_len <= 30) && ($email_len<=30)) 
                 { // limite maximum de caractere
-
-                    
                     $existLogin = $modelInscription->ifExist($login); // l'utilisateur existe-t-il ? 
                     $existEmail = $modelInscription->ifExist($email); // l'email est-il déjà utilisé ?
                     if (!$existLogin) 

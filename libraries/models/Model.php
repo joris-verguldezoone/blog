@@ -81,7 +81,8 @@ abstract class Model // <3
    
     public function findAllArticles() // display for admin 
     {
-        $sql = "SELECT  a.id, a.titre, a.article, a.id_utilisateur, c.nom, a.date FROM articles AS a INNER JOIN categories AS c WHERE a.id_categorie = c.id ORDER BY date";  
+        $sql = "SELECT  a.id, a.titre, a.article, a.id_utilisateur, c.nom, a.date FROM articles AS a 
+        INNER JOIN categories AS c WHERE a.id_categorie = c.id ORDER BY date";  
         $result = $this->pdo->prepare($sql);
         $result->execute();
 
@@ -102,8 +103,10 @@ abstract class Model // <3
     }
     //Cindy 
     public function findAllandAffArticles(){ // display all articles
-        $sql = "SELECT a.id, a.titre, a.article, u.login, c.nom, c.couleur, a.date FROM articles AS a LEFT OUTER JOIN utilisateurs AS u 
-        ON u.id = a.id_utilisateur LEFT OUTER JOIN categories AS c ON c.id = a.id_categorie ORDER BY date";
+        $sql = "SELECT a.id, a.titre, a.article, u.login, c.nom, c.couleur, a.date FROM articles AS a 
+        LEFT OUTER JOIN utilisateurs AS u 
+        ON u.id = a.id_utilisateur 
+        LEFT OUTER JOIN categories AS c ON c.id = a.id_categorie ORDER BY date";
         $result = $this->pdo->prepare($sql);
         $result->execute();
         $i = 0;
@@ -126,8 +129,10 @@ abstract class Model // <3
         return $tab;
     }
     public function findOneArticle($id){ // display all articles
-        $sql = "SELECT a.id, a.titre, a.article, u.login, c.nom, couleur, a.date FROM articles AS a LEFT OUTER JOIN utilisateurs AS u 
-        ON u.id = a.id_utilisateur LEFT OUTER JOIN categories AS c ON c.id = a.id_categorie WHERE a.id = '$id'";
+        $sql = "SELECT a.id, a.titre, a.article, u.login, c.nom, couleur, a.date FROM articles AS a 
+        LEFT OUTER JOIN utilisateurs AS u 
+        ON u.id = a.id_utilisateur 
+        LEFT OUTER JOIN categories AS c ON c.id = a.id_categorie WHERE a.id = '$id'";
         $result = $this->pdo->prepare($sql);
         $result->bindValue(':id',$id,\PDO::PARAM_INT);
         $result->execute();
@@ -151,7 +156,7 @@ abstract class Model // <3
     
     public function descriptionLimit($value){
 
-         $rest = substr($value, 0, 30);   // limit le nbr de caractere dans une chaine
+         $rest = substr($value, 0, 150);   // limit le nbr de caractere dans une chaine
          $rest = substr_replace($rest, '...', -3);
         return $rest;
     }
@@ -167,8 +172,10 @@ abstract class Model // <3
     }
 
     public function findArticleByCategories($nom){
-        $sql = "SELECT a.id, a.titre, a.article, u.login, c.nom, c.couleur ,a.date FROM articles AS a LEFT OUTER JOIN utilisateurs AS u 
-        ON u.id = a.id_utilisateur LEFT OUTER JOIN categories AS c ON c.id = a.id_categorie WHERE c.nom = :nom";
+        $sql = "SELECT a.id, a.titre, a.article, u.login, c.nom, c.couleur ,a.date FROM articles AS a 
+        LEFT OUTER JOIN utilisateurs AS u 
+        ON u.id = a.id_utilisateur 
+        LEFT OUTER JOIN categories AS c ON c.id = a.id_categorie WHERE c.nom = :nom";
 
         $result = $this->pdo->prepare($sql);
         $result->bindvalue(":nom",$nom,\PDO::PARAM_STR);
@@ -190,5 +197,13 @@ abstract class Model // <3
             // $this->description = $fetch['article']; nul/20
         }
         return $tab;
+    }
+    public function maxCategories(){
+        $sql = "SELECT COUNT(*) FROM categories";
+        $result = $this->pdo->prepare($sql);
+        $result->execute();
+        $fetch = $result->fetch(\PDO::FETCH_ASSOC);
+
+        return $fetch;
     }
 }

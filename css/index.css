@@ -8,6 +8,7 @@ a{
 
 body{
     background-image: url("../images/imperial_stormtrooper-wallpaper-1920x1080.jpg");
+    background-size: cover;
 }
 
 h1{
@@ -22,4 +23,36 @@ article{
     font-size: 27px;
     margin-top: 9%;
 
+}
+.indexArticlesForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:0.2%;
+    width:90vh;
+
+
+}
+#articleContainer{
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+div#form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#buttonArticles{
+    padding: 1%;
+    width: 90vh;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.signature{
+    color:white;
 }

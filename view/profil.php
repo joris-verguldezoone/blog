@@ -16,13 +16,13 @@ $Pagenom = "Profil";
 //FORM 
 $articlesForm = 'articles.php';
 
-//PATHS
+// PATHS
 $index = "../index.php";
 $inscription = "inscription.php";
 $connexion = "connexion.php";
 $profil = "profil.php";
 $admin = "admin.php";
-$article = "article.php";
+$articles = "articles.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
 
@@ -33,7 +33,7 @@ require('../require/html_/header.php');
 
 ?>
 <main>
-    <form class="block" method="POST" action="inscription.php">
+    <form class="block" method="POST" action="profil.php">
         <h1><u>Profil</u></h1>
 
         <article>
@@ -64,7 +64,7 @@ require('../require/html_/header.php');
 
     if (isset($_POST['register'])) {
         
-        $newUser = new \Controller\Profil(); // prend pas le bon
+        $newUser = new \Controller\Profil(); 
         $newUser->profil($_POST['login'], $_POST['password'], $_POST['confirm_password'], $_POST['email']);
     }
     ?>

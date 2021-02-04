@@ -5,10 +5,12 @@ main{
 body{
     background-image: url("../images/ef589db23da28325deea41ea259d0baa.jpg");
     background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
 }
 
 h1{
-    margin-top: 10%;
+    margin-top: 4%;
     margin-left: 50%;
 }
 

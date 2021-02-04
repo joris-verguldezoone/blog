@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 //LIBRARIES
 $Http = "../libraries/Http.php";
 $database = '../libraries/database.php';
@@ -9,23 +9,26 @@ require("../libraries/models/Admin.php");
 require_once('../libraries/Controller/Article.php');
 require_once('../libraries/Models/Article.php');
 
+//FORM 
+$articlesForm = 'articles.php';
+
 // PATHS
 $index = "../index.php";
 $inscription = "inscription.php";
 $connexion = "connexion.php";
 $profil = "profil.php";
 $admin = "admin.php";
-$article = "article.php";
+$articles = "articles.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
 //CSS
 $headerCss = "../css/header.css";
-$pageCss = "../css/article.css";
+$pageCss = "../css/articles.css";
 $Pagenom = "Articles";
 $footer = "../css/footer.css";
 
-//FORM 
-$articlesForm = 'articles.php';
+
+
 
 //HEADER
 require('../require/html_/header.php');
@@ -37,15 +40,13 @@ if(isset($_GET['submitSearchCategory'])){
     $ArticlesByCategorie = $articleController->articleByCategorieDisplay($_GET['selectSearchCategory']);
 }
 if(!isset($_GET['selectSearchCategory'])){
-    $modelArticleDisplay = new \Models\Connexion();
+    $modelArticleDisplay = new \Models\Article();
     $Articles = $modelArticleDisplay->findAllandAffArticles();
     $page = 1;
 
     if (isset($_GET['page'])){
         $page = $_GET['page'];
     }
-
-    
 
             $pageArticles = '';
 
@@ -60,8 +61,8 @@ if(!isset($_GET['selectSearchCategory'])){
             while (isset($Articles)) {
                 $id = $Articles[$i][0];
                 $descriptionLimit = $modelArticleDisplay->descriptionLimit($Articles[$i][2]);
-                echo "<br /><div id='form'><form method='GET' action='article.php'><input type='hidden' name='articleSelected' id='hiddenId' value='".$id."'><button type='submit' id='buttonArticles' style='background-color:".$Articles[$i][5].";'><h3><u>".$Articles[$i][1]."</h3></u><br />"
-                .$descriptionLimit."<br />"
+                echo "<br /><div id='form'><form method='GET' action='article.php'><input type='hidden' name='articleSelected' id='hiddenId' value='".$id."'><button type='submit' id='buttonArticles' style='background:".$Articles[$i][5].";'><h2><u>".$Articles[$i][1]."</h2></u><br />"
+                . "<i style='font-size: 1.2em'>" .$descriptionLimit."</i><br />"
                 .$Articles[$i][3]."<br />"
                 .$Articles[$i][4]."<br />"
                 .$Articles[$i][6]."</button><br /></form></div>";
@@ -95,7 +96,7 @@ if(!isset($_GET['selectSearchCategory'])){
                 $page_item .= '</div>';
             }
 
-            echo "<form method='get' action='articles.php' class='pagination>";
+            echo "<form method='get' action='articles.php' class='pagination'>";
 
             echo $page_item;
 

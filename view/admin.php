@@ -27,41 +27,50 @@ $inscription = "inscription.php";
 $connexion = "connexion.php";
 $profil = "profil.php";
 $admin = "admin.php";
-$article = "article.php";
+$articles = "articles.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
 
 //HEADER
 require('../require/html_/header.php');
+
+
 ?>
 <main>
+
+    <h2>Afin d'accéder aux changements les utilisateurs doivent se déco reco</h2>
+
+<article>
     <form action="" method="POST">
+        <article id="categorie_flex">
         <label for="newCategorie">Nouvelle categorie</label>
         <input name="newCategorie" id="idnewCategorie" type="text" placeholder="Ma categorie...">
         
         <label for='categoryColor'>Couleur de la categorie</label>
         <select name="categoryColor">
-            <option value='#ff0022'>Rouge</option>
-            <option value='#ff00d4'>Violet</option>
-            <option value='#3b00ff'>Bleu Fonc�</option>
-            <option value='#00e5ff'>Bleu Clair</option>
-            <option value='#00ff37'>Vert Clair</option>
-            <option value='#5ea52b'>Vert Fonc�</option>
-            <option value='#e9ff00'>Jaune</option>
-            <option value='#ffd400'>Orange</option>
-            <option value='#211a1a'>Marron</option>
+            <option value='linear-gradient(to bottom left, #cc0000 57%, #ffff99 100%)'>Rouge</option>
+            <option value='linear-gradient(to bottom left, #990099 57%, #ffff99 100%)'>Violet</option>
+            <option value='linear-gradient(to bottom left, #000099 57%, #ffff99 100%)'>Bleu Fonce</option>
+            <option value='linear-gradient(to bottom left, #33cccc 57%, #ffff99 100%)'>Bleu Clair</option>
+            <option value='linear-gradient(to bottom left, #00ff00 57%, #ffff99 100%)'>Vert Clair</option>
+            <option value='linear-gradient(to bottom left, #006600 57%, #ffff99 100%)'>Vert Fonce</option>
+            <option value='linear-gradient(to bottom left, #003366 0%, #ffff00 100%)'>Jaune</option>
+            <option value='linear-gradient(to bottom left, #ff9900 57%, #ffff99 100%)'>Orange</option>
+            <option value='linear-gradient(to bottom left, #663300 74%, #ffffcc 100%)'>Marron</option>
 
         </select>
 
         <input type="submit" id="submitCategorie" name="Submit_newCategorie">
         </form>
         <?php
+        //var_dump($_SESSION);
         if(isset($_POST['Submit_newCategorie'])){
 
             $newCategorie = new \Controller\Admin();
             $newCategorie->createNewCategorie($_POST['newCategorie']);
         }
         ?>
+        
         <form action='' method='GET'> <!-- je differencie le GET et le POST selon si j'vais avoir besoin de donnees tel que l'id dans l'url + c pratik pour check -->
             <label for="SelectCategory">Modifier une categorie</label>
             <select name="selectCategory">
@@ -85,10 +94,14 @@ require('../require/html_/header.php');
             <input type='submit' id='DeleteCategorySubmitId' name='DeleteCategorySubmit' value='Supprimer'>
 
             </form>
+
+
         <?php
+
         if(isset($_GET['ModifyCategorySubmit'])){
             $previousName = $_GET['selectCategory'];
             echo "<form action='' method='POST'>";
+            echo "<label>Modifier : </label>";
             echo "<input type='text' id='modifyDeleteCategory' name='ModifyCategory' value='".$_GET['selectCategory']."'>";
             echo "<input type='submit' id='SendChangesID' name='SendChanges' value='Envoyer'>";
             echo "</form>";
@@ -103,7 +116,7 @@ require('../require/html_/header.php');
         if(isset($_GET['DeleteCategorySubmit'])){
             $nom = $_GET['selectCategory'];
             $nom = str_replace('_', ' ', $nom);
-            echo "etes vous sur de vouloir supprimer la categorie ".$nom."?";
+            echo "Êtes-vous sûr de vouloir supprimer la catégorie ".$nom."?";
             echo "  <form action='' method=POST>
                     <input type='submit' name='yes' value='Oui'>
                     <input type='submit' name='cancel' value='Annuler'>
@@ -121,13 +134,17 @@ require('../require/html_/header.php');
                     }
         }
         ?>
-<table class="tableau_admin">
+            </article>
+    <hr class="trait">
+<h2>Utilisateurs</h2>
+    <table class="ensemble_tableau">
             <tr>
                 <th class="tableau_admin">ID</th>
                 <th class="tableau_admin">LOGIN</th>
                 <th class="tableau_admin">EMAIL</th>
                 <th class="tableau_admin">DROITS</th>
             </tr>
+
 <?php
 
 $adminController = new \Controller\Admin();
@@ -142,9 +159,9 @@ $adminController->userDisplay(); // Sah quel plaisir d'avoir un controller et pa
     }
     if(isset($_GET['deleteUser'])){
         $id = $_GET['idTracker'];
-        echo "etes vous sur de vouloir supprimer cet utilisateur?";
-        echo "  <form action='' method=POST>
-                <input type='submit' name='yes' value='Oui'>
+        echo "<p class='mess_admin'>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</p>";
+        echo " <form action='' method=POST class='form_confirmation'>
+                <input type='submit' name='yes' value='Oui' class='bouton_confirmation'>
                 <input type='submit' name='cancel' value='Annuler'>
                 </form>";
                 if(isset($_POST['yes'])){
@@ -159,13 +176,14 @@ $adminController->userDisplay(); // Sah quel plaisir d'avoir un controller et pa
                 }
     }
         ?>
-        <table class="">
+    <hr class="trait">
+    <h2>Articles</h2>
+        <table class="ensemble_tableau">
             <tr>
                 <th class="tableau_admin">ID</th>
                 <th class="tableau_admin">TITRE</th>
                 <th class="tableau_admin">CONTENU</th>
                 <th class="tableau_admin">ID CREATEUR</th>
-                <th class="tableau_admin">CATEGORIE</th>
                 <th class="tableau_admin">ID CATEGORIE</th>
                 <th class="tableau_admin">DATE</th>
             </tr>
@@ -184,11 +202,14 @@ $adminController->userDisplay(); // Sah quel plaisir d'avoir un controller et pa
                         // $modelHttp = new \Http();
                         // $modelHttp->redirect('admin.php');
                     }
+            ?>
+        </table>
+        <?php
             if(isset($_GET['deleteArticle'])){
                 $id = $_GET['articleIdTracker'];
-                echo "etes vous sur de vouloir supprimer cet article?";
-                echo "  <form action='' method=POST>
-                            <input type='submit' name='yesArticle' value='Oui'>
+                echo "<p class='mess_admin'>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</p>";
+                echo "  <form action='' method=POST class='form_confirmation'>
+                            <input type='submit' name='yesArticle' value='Oui' class='bouton_confirmation'>
                             <input type='submit' name='cancelArticle' value='Annuler'>
                         </form>";
                         if(isset($_POST['yesArticle'])){
@@ -203,7 +224,7 @@ $adminController->userDisplay(); // Sah quel plaisir d'avoir un controller et pa
                         }
             }
             ?>
-        </table>
+
 </main> 
 <?php
 //FOOTER

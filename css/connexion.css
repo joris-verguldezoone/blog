@@ -1,15 +1,16 @@
 main{
-    min-height:56%;
+    min-height:52%;
     margin-left: 45%;
 }
 
 body{
     background-image: url("../images/photo-1513807762437-8c8dee6b3776.jpg");
     background-repeat: no-repeat;
+    background-size: contain;
 }
 
 h1{
-    margin-top: 10%;
+    margin-top: 4%;
     margin-left: 20%;
 }
 

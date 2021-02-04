@@ -15,7 +15,7 @@ $inscription = "inscription.php";
 $connexion = "connexion.php";
 $profil = "profil.php";
 $admin = "admin.php";
-$article = "article.php";
+$articles = "articles.php";
 $creerarticle = "creer-article.php";
 $indexoff = "../index.php?off=1";
 
@@ -54,7 +54,7 @@ require_once('../libraries/models/Inscription.php');
                 <span class="focus-bg"></span>
             </label>
             <label for="email" name="email" class="inp">
-                <input type="text" id="inscriptionEmail" name="email" placeholder="&nbsp;">
+                <input type="email" id="inscriptionEmail" name="email" placeholder="&nbsp;">
                 <span class="label">Email</span>
                 <span class="focus-bg"></span>
             </label>

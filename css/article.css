@@ -1,56 +1,104 @@
-main{
-    min-height:60%;
-    margin-top: 2%;
-}
-.a_header{
-    color: white;
+@font-face {
+    font-family: 'Retro Gaming.ttf';
+    src: url("../fonts/Retro Gaming.ttf");
 }
 
-.a_footer{
-    color: white;
-}
-
-.signature{
-    color: white;
+@font-face {
+    font-family: 'Fipps-Regular.otf';
+    src: url("../fonts/Fipps-Regular.otf");
 }
 
 body{
     background-image: url("../images/wp5498323.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-*{
-    margin: 0;
-    padding: 0;
+h1{
+    border-radius: 0.4em;
 }
 
-#buttonArticles{
-    padding: 1.5%;
+.a_header,
+.a_footer{
+    color: white;
 }
 
-div#form{
-    width:45%;
-    margin-left: 28%;
+#pageArticle{
+    background-color: rgba(0, 0, 255, 0.3);;
+    margin: 8%;
+    padding: 2%;
+    color: white;
+    border-radius: 0.6em;
 }
 
-button{
-    border-radius: 5px;
+#titre_article{
+    text-align: center;
+    font-size: 50px;
 }
 
-.pagination{
+#description_article{
+    font-size: 25px;
+}
+
+#flex_articles{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 20px;
+}
+
+#ecrire {
     display: flex;
     justify-content: center;
+    font-size: 2em;
 }
 
-.pagination_btn{
-    margin-top: 0.5%;
-    margin-right: 0.5em;
-    border-radius: 5px;
-    padding: 8px 16px;
+#trait_article{
+    width: 30%;
+    align-content: center;
+    margin-bottom: 1em;
 }
 
-.pagination_btn.current{
-    background-color: #0033cc;
+#trait_commentaire{
+margin-bottom: 1.5em;
+}
+
+#idNewComment{
+    resize: vertical;
+    font-size: 1.3em;
+    width: 100%;
+}
+
+#bloc_commentaire{
+    font-size: 1.3em;
+    margin-left: 1.5%;
+}
+
+#idSubmitComment{
+    background-color: black;
+    border: none;
     color: white;
-    font-weight: bold;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    margin-inline-start: auto;
+    margin-top: 1em;
+
 }
 
+#pseudo{
+    font-family: "Retro Gaming.ttf";
+}
+
+#font_date{
+    font-family: "Fipps-Regular.otf";
+    font-size: 0.6em;
+}
+
+
+#margin_date{
+    margin-top: 1.2em ;
+}

@@ -44,7 +44,7 @@ class Admin extends Model {
         $modelCategorie = new \Models\Admin();
         $tableauCategorie = $modelCategorie->findAllCategories();
         $i= 0;
-        foreach ($tableauCategorie as $key => $value) 
+        foreach ($tableauCategorie as $key => $value)
         {
             $nom = $value[0]; // 0 = nom  <---> 1 = id
             $id = $value[1];
@@ -102,7 +102,7 @@ class Admin extends Model {
                    break;
                 }
                     
-                $tableauDisplay = "<form action='' method=POST>
+                $tableauDisplay = "<form action='' method=POST id='tab_admin1'>
                 <label name='login'>Login</label>
                 <input type='text' id='Login' name='loginUpdate' value='".$tableau[0][0]."'>
                 <label name='email'>Email</label>
@@ -133,7 +133,6 @@ class Admin extends Model {
                 $result->bindvalue(':id_droits',$id_droits, \PDO::PARAM_INT);
                 $result->bindvalue(':id',$id, \PDO::PARAM_INT);
                 $result->execute();
-               
             }
             public function deleteUser($id){
                 $sql = "DELETE FROM utilisateurs WHERE id = :id";
@@ -181,19 +180,27 @@ class Admin extends Model {
                     }
                     
                     $tableauDisplay = "<form action='' method=POST>
-                    <label for='titreUpdate'>Titre</label>
-                    <input type='text' id='Titre' name='titreUpdate' value='".$tableau[0][0]."'>
-                    <label for='articleUpdate'>Article</label>
-                    <textarea type='text' id='Article' name='articleUpdate' rows='5' cols='33'>".$tableau[0][1]."</textarea>
-                    <label for='id_utilisateurUpdate'>id_utilisateur</label>
-                    <input type='text' id='id_utilisateur' name='id_utilisateurUpdate' value='".$tableau[0][2]."'></br>
-                    CATEGORIE :".$tableau[0][3]."
-                    <label for='categorieUpdate'>id_categorie</label>
-                    <input type='text' id='idCategoryModifyArticle' name='catagorieUpdate' value='".$tableau[0][4]."'></br>
-                    <label for='dateUpdate'>Date</label>
-                    <input type='datetime' id='date' name='dateUpdate' value='".$tableau[0][5]."'></br>
-    
-                    <input type='submit' name='adminModifyArticle' value='Changements'>
+                        <section id='tab_admin2'>
+                            <div class='div_art'>
+                                <label class='labelModifArticle' for='titreUpdate'>Titre</label><br>
+                                <input type='text' id='Titre' name='titreUpdate' value='".$tableau[0][0]."'>
+                            </div>
+                            <div class='div_art'>
+                                <label class='labelModifArticle' for='articleUpdate'>Article</label>
+                                <textarea type='text' id='Article' name='articleUpdate' rows='10' cols='35'>".$tableau[0][1]."</textarea>
+                            </div>
+                            <div class='div_art'>
+                                <label class='labelModifArticle' for='id_utilisateurUpdate'>ID Utilisateur</label>
+                                <input type='text' id='id_utilisateur' name='id_utilisateurUpdate' value='".$tableau[0][2]."'></br>
+                            </div>
+                            <div class='div_art'>   CATEGORIE :".$tableau[0][3]."
+                                <label class='labelModifArticle'  for='categorieUpdate'>ID Categorie</label>
+                                <input type='text' id='idCategoryModifyArticle' name='catagorieUpdate' value='".$tableau[0][4]."'></br>
+                            </div>
+                            <div class='div_art'>
+                                <input type='submit' name='adminModifyArticle' value='Changements'>
+                            </div>
+                        </section>
                     </form>";
                     
                     return $tableauDisplay; // on imprime l'affichage dans la view

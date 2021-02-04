@@ -9,12 +9,10 @@ require($Article);
 
 class Admin {
 
-    public $newCategorie = "";
-
     public function createNewCategorie($newCategorie){
 
         $modelAdmin = new \Models\Admin();
-        $this->newCategorie = $modelAdmin->secure($_POST['newCategorie']);
+        $newCategorie = $modelAdmin->secure($_POST['newCategorie']);
         $categorieColor = $modelAdmin->secure($_POST['categoryColor']);
         $errorLog  = "";
         if(!empty($newCategorie)){
@@ -26,9 +24,14 @@ class Admin {
                 if(!$count){ // si n'existe pas 
                     $existColor = $modelAdmin->ifExistColor($categorieColor);
                     if(!$existColor){
-
-                        $modelAdmin->insertCategorie($newCategorie,$categorieColor);
-                        echo "LA nouvelle catégorie ".$newCategorie." créee avec succès";
+                        $max = $modelAdmin->maxCategories();
+                        if($max['COUNT(*)']<10){
+                            $modelAdmin->insertCategorie($newCategorie,$categorieColor);
+                            echo "LA nouvelle catégorie ".$newCategorie." créee avec succès";
+                        }
+                        else{
+                            $errorLog = "Le nombre de categories est limité a 9, supprimez en pour en creer des nouvelles";
+                        }
                     }
                     else{
                         $errorLog = "Cette couleur est déjà utilisé par une autre categorie, seul 9 categories peuvent etre créer, a part si on paye plus le dev";
@@ -94,7 +97,7 @@ class Admin {
                    $id_droitsUpdate = 1337; 
                    break;
                 }
-                $modelUpdate->adminUpdate($_POST['loginUpdate'], $_POST['emailUpdate'], $id_droitsUpdate, $id);
+              $newSession = $modelUpdate->adminUpdate($_POST['loginUpdate'], $_POST['emailUpdate'], $id_droitsUpdate, $id);
                 $modelHttp = new \Http();
                 $modelHttp->redirect('admin.php');
             }
@@ -117,8 +120,7 @@ class Admin {
                             <td>
                                 <input type='submit' id='Modifier' value='modifier'>
                                 <input type='hidden' name='articleName' id='hiddenId' value='".$value[0]."'> 
-                            </td>
-                            <td>
+                            
                                 <input type='submit' name='deleteArticle' value='supprimer'>
                                 <input type='hidden' name='articleIdTracker' id='suppr' value='".$value[0]."'>
                             </td>

@@ -1,4 +1,81 @@
 main{
-    max-width:1280px;
-    min-height:62%;
+    min-height:54.5%;
+    font-size: 1em;
 }
+
+#categorie_flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 2%;
+}
+
+h2{
+    text-align: center;
+    margin-top: 4%;
+}
+
+.ensemble_tableau {
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+    margin-bottom: 2%;
+}
+
+tr{
+    text-align: center;
+}
+
+td{
+    width: 1%;
+}
+
+
+#tab_admin1 {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 5%;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.div_art{
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+#tab_admin2{
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    width:80%;
+    padding-left: 10%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+.labelModifArticle{
+    margin-right: 7%;
+}
+
+.trait{
+    width: 30%;
+    align-content: center;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+.mess_admin{
+    display: flex;
+    justify-content: center;
+}
+
+.form_confirmation{
+    display: flex;
+    justify-content: center;
+}
+
+.bouton_confirmation{
+    margin-right: 1%;
+}
+
