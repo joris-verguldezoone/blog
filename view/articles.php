@@ -62,10 +62,10 @@ if(!isset($_GET['selectSearchCategory'])){
                 $id = $Articles[$i][0];
                 $descriptionLimit = $modelArticleDisplay->descriptionLimit($Articles[$i][2]);
                 echo "<br /><div id='form'><form method='GET' action='article.php'><input type='hidden' name='articleSelected' id='hiddenId' value='".$id."'><button type='submit' id='buttonArticles' style='background:".$Articles[$i][5].";'><h2><u>".$Articles[$i][1]."</h2></u><br />"
-                . "<i style='font-size: 1.2em'>" .$descriptionLimit."</i><br />"
-                .$Articles[$i][3]."<br />"
-                .$Articles[$i][4]."<br />"
-                .$Articles[$i][6]."</button><br /></form></div>";
+                    . "<i style='font-size: 1.2em'>" .$descriptionLimit."</i><br />"
+                    . "<div id='pseudo'>" .$Articles[$i][3]."</div><br />"
+                    .$Articles[$i][4]."<br />"
+                    .$Articles[$i][6]."</button><br /></form></div>";
                 
                     break; // ce break permet de garde la structure de 5 par 5
                     

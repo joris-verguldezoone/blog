@@ -73,3 +73,9 @@ div#form {
 button {
     border-radius: 5px;
 }
+
+#pseudo{
+    font-family: "Fipps-Regular.otf";
+    margin-top: 1em;
+    font-size: 1em;
+}
