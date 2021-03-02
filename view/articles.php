@@ -35,13 +35,7 @@ require('../require/html_/header.php');
 ?>
 <main>
 <?php
-if(isset($_GET['submitSearchCategory'])){
-    $articleController = new \Controller\Article();
-    $ArticlesByCategorie = $articleController->articleByCategorieDisplay($_GET['selectSearchCategory']);
-}
-if(!isset($_GET['selectSearchCategory'])){
-    $modelArticleDisplay = new \Models\Article();
-    $Articles = $modelArticleDisplay->findAllandAffArticles();
+
     $page = 1;
 
     if (isset($_GET['page'])){
